@@ -21,3 +21,9 @@
 
   cursor: pointer;
 }
+
+@media (hover: none) {
+  .profile__add:hover {
+    opacity: 1;
+  }
+}

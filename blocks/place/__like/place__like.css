@@ -30,10 +30,12 @@
   transition: background .15s ease-in-out;
 }
 
-.place__like:hover {
-  cursor: pointer;
-}
+@media (hover: hover) {
+  .place__like:hover {
+    cursor: pointer;
+  }
 
-.place__like:hover::before {
-  background-position-y: bottom;
+  .place__like:hover::before {
+    background-position-y: bottom;
+  }
 }

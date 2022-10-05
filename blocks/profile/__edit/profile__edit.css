@@ -25,6 +25,12 @@
   cursor: pointer;
 }
 
+@media (hover: none) {
+  .profile__edit:hover {
+    opacity: 1;
+  }
+}
+
 @media (min-width: 768px) {
   .profile__edit {
     align-self: end;

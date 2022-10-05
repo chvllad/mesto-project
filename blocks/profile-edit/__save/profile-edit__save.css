@@ -8,7 +8,7 @@
   font: 400 14px/17px "Inter", sans-serif;
   color: #fff;
 
-  background-color: rgba(0, 0, 0, 1);
+  background-color: #000;
   border-radius: 2px;
 
   transition: background-color .3s ease;
@@ -18,6 +18,12 @@
 .profile-edit__save:focus {
   background-color: rgba(0, 0, 0, .8);
   cursor: pointer;
+}
+
+@media (hover: none) {
+  .profile-edit__save:hover {
+    background-color: #000;
+  }
 }
 
 @media (min-width: 576px) {
