@@ -6,7 +6,7 @@ editEl.addEventListener('click', () => {
   modalEl.classList.add('popup_opened');
 });
 
-closeEl.addEventListener('click', () => {
+closeEl.addEventListener('mousedown', () => {
   modalEl.classList.remove('popup_opened');
 });
 

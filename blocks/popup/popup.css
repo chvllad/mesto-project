@@ -7,11 +7,7 @@
   height: 100%;
 
   display: none;
-  grid-template:
-    "." minmax(40px, 1fr)
-    "el"
-    "." 1fr
-    / 1fr;
+  grid-template: "." minmax(0, auto) / 1fr;
 
   background-color: rgba(0, 0, 0, .5);
 }

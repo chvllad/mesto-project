@@ -1,6 +1,10 @@
 .profile-edit {
   padding: var(--profile-edit-padding);
 
+  box-sizing: border-box;
+  max-height: 100%;
+  overflow-y: auto;
+
   display: grid;
   grid-template:
     "title"
