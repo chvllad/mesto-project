@@ -1,0 +1,13 @@
+.footer__text {
+  margin: 0;
+
+  font: 400 14px/17px "Inter", sans-serif;
+  color: #545454;
+}
+
+@media (min-width: 768px) {
+  .footer__text {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

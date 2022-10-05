@@ -1,0 +1,15 @@
+.profile__photo {
+  min-width: 42.55%;
+
+  grid-area: photo;
+  justify-self: center;
+}
+
+@media (min-width: 768px) {
+  .profile__photo {
+    margin: 0;
+
+    justify-self: stretch;
+    align-self: center;
+  }
+}

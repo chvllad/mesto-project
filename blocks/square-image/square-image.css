@@ -1,0 +1,11 @@
+.square-image {
+  position: relative;
+}
+
+.square-image::before {
+  content: '';
+
+  padding-top: 100%;
+
+  display: block;
+}

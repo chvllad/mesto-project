@@ -1,0 +1,13 @@
+.popup__content {
+  margin: 0 18px;
+  position: relative;
+
+  grid-area: el;
+}
+
+@media (min-width: 466px) {
+  .popup__content {
+    margin: 0 auto;
+    width: 430px;
+  }
+}

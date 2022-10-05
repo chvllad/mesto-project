@@ -1,0 +1,23 @@
+.profile__add {
+  height: 50px;
+
+  grid-area: add;
+  align-self: center;
+
+  background-color: transparent;
+  background-image: url('../../../images/profile-add.svg');
+  background-repeat: no-repeat;
+  background-size: var(--profile-add-button-image-size) var(--profile-add-button-image-size);
+  background-position: center;
+
+  border: 1px solid #fff;
+
+  transition: opacity .15s ease-in;
+}
+
+.profile__add:hover,
+.profile__add:focus {
+  opacity: .6;
+
+  cursor: pointer;
+}

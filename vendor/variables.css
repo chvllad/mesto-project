@@ -1,0 +1,41 @@
+:root {
+  --page-header-template: "header header header";
+  --page-header-space: 42px;
+  --page-profile-space: 36px;
+  --page-places-space: 48px;
+
+  --profile-edit-button-size: 18px;
+  --profile-edit-button-image-size: 7.5px;
+  --profile-edit-button-space: 10px;
+  --profile-add-button-image-size: 16px;
+
+  --modal-el-max-width: 430px;
+
+  --profile-edit-padding: 22px 22px 25px 22px;
+  --profile-edit-form-bgcolor: #fff;
+  --profile-edit-form-color: #000;
+  --profile-edit-space-title: 75px;
+  --profile-edit-space-button: 45px;
+}
+
+@media (min-width: 576px) {
+  :root {
+    --profile-edit-padding: 34px 36px 37px 36px;
+    --profile-edit-space-title: 48px;
+    --profile-edit-space-buttons: 48px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-header-template: ". header .";
+    --page-header-space: 40px;
+    --page-profile-space: 50px;
+    --page-places-space: 66px;
+
+    --profile-edit-button-size: 24px;
+    --profile-edit-button-image-size: 10px;
+    --profile-edit-button-space: 18px;
+    --profile-add-button-image-size: 22px;
+  }
+}

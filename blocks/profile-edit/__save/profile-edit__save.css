@@ -1,0 +1,28 @@
+.profile-edit__save {
+  padding: 14px 0;
+
+  outline: none;
+
+  grid-area: save;
+
+  font: 400 14px/17px "Inter", sans-serif;
+  color: #fff;
+
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 2px;
+
+  transition: background-color .3s ease;
+}
+
+.profile-edit__save:hover,
+.profile-edit__save:focus {
+  background-color: rgba(0, 0, 0, .8);
+  cursor: pointer;
+}
+
+@media (min-width: 576px) {
+  .profile-edit__save {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

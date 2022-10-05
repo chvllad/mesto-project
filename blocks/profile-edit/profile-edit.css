@@ -1,0 +1,19 @@
+.profile-edit {
+  padding: var(--profile-edit-padding);
+
+  display: grid;
+  grid-template:
+    "title"
+    "." var(--profile-edit-space-title)
+    "name"
+    "." 30px
+    "status"
+    "." var(--profile-edit-space-button)
+    "save" / 1fr;
+
+  background-color: var(--profile-edit-form-bgcolor);
+  color: var(--profile-edit-form-color);
+
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}

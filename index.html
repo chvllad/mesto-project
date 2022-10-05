@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/favicon.png">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Mesto</title>
+</head>
+
+<body class="root">
+  <div class="page">
+    <header class="page__header header">
+      <h1 class="header__title"><img src="images/logo.svg" alt="mesto russia" class="header__logo"></h1>
+    </header>
+    <main class="page__content">
+      <section class="page__profile profile">
+        <h2 class="profile__name">Жак-Ив Кусто</h2>
+        <p class="profile__status">Исследователь океана</p>
+        <div class="square-image profile__photo">
+          <img src="images/profile.jpg" alt="фото профиля" class="square-image__image square-image__image_rounded">
+        </div>
+        <button class="profile__edit"></button>
+        <button class="profile__add"></button>
+      </section>
+      <section class="page__places places" aria-label="Посещённые места">
+        <ul class="places__list">
+          <li>
+            <article class="place">
+              <h3 class="place__name">Карачаевск</h3>
+              <div class="square-image place__img">
+                <img src="images/places/karachaevsk.jpg" alt="карачаевск" class="square-image__image">
+              </div>
+              <button class="place__like"></button>
+            </article>
+          </li>
+          <li>
+            <article class="place">
+              <h3 class="place__name">Гора Эльбрус</h3>
+              <div class="square-image place__img">
+                <img src="images/places/elbrus.jpg" alt="Гора Эльбрус" class="square-image__image">
+              </div>
+              <button class="place__like"></button>
+            </article>
+          </li>
+          <li>
+            <article class="place">
+              <h3 class="place__name">Домбай</h3>
+              <div class="square-image place__img">
+                <img src="images/places/dombai.jpg" alt="Домбай" class="square-image__image">
+              </div>
+              <button class="place__like"></button>
+            </article>
+          </li>
+          <li>
+            <article class="place">
+              <h3 class="place__name">Озеро Любви</h3>
+              <div class="square-image place__img">
+                <img src="images/places/lake-of-love.jpg" alt="Озеро Любви" class="square-image__image">
+              </div>
+              <button class="place__like"></button>
+            </article>
+          </li>
+          <li>
+            <article class="place">
+              <h3 class="place__name" title="Долина Софии и Софийские водопады">Долина Софии и Софийские водопады</h3>
+              <div class="square-image place__img">
+                <img src="images/places/sofia-waterfalls.jpg" alt="Долина Софии и Софийские водопады" class="square-image__image">
+              </div>
+              <button class="place__like"></button>
+            </article>
+          </li>
+          <li>
+            <article class="place">
+              <h3 class="place__name" title="Туманлы-Кель">Туманлы-Кель</h3>
+              <div class="square-image place__img">
+                <img src="images/places/tumanly-kel.jpg" alt="Туманлы-Кель" class="square-image__image">
+              </div>
+              <button class="place__like"></button>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="page__footer footer">
+      <p class="footer__text">© 2022 Mesto Russia</p>
+    </footer>
+  </div>
+  <div class="popup">
+    <div class="popup__content">
+      <button class="popup__close"></button>
+      <form action="#" class="profile-edit">
+        <h2 class="profile-edit__title">Редактировать профиль</h2>
+        <input class="profile-edit__name profile-edit__input" id="name" type="text" placeholder="Введите имя"
+          value="Жак-Ив Кусто">
+        <input class="profile-edit__status profile-edit__input" id="status" type="text" placeholder="Введите статус"
+          value="Исследователь океана">
+        <input class="profile-edit__save" type="submit" value="Сохранить">
+      </form>
+    </div>
+  </div>
+  <div class="hidden">
+    <svg xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="like-clip">
+          <path
+            d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583823 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56822 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
+            fill="black" />
+        </clipPath>
+        <clipPath id="fill-like-clip">
+          <path id="like-path" style="fill-rule: inherit; clip-rule: inherit;"
+            d="M20.2991 1.68186C22.567 3.90213 22.567 7.54338 20.2991 9.78586L10.9804 19L1.6841 9.80806C0.606277 8.72013 0 7.27695 0 5.74496C0 4.21297 0.583823 2.76979 1.6841 1.68186C3.92957 -0.560619 7.61215 -0.560619 9.88007 1.70406L10.9804 2.792L12.0806 1.68186C14.3486 -0.560619 18.0311 -0.560619 20.2991 1.68186Z"
+            fill="black" />
+        </clipPath>
+      </defs>
+    </svg>
+  </div>
+  <script src="scripts/script.js" async></script>
+</body>
+
+</html>
