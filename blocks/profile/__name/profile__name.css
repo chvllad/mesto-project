@@ -5,7 +5,9 @@
 
   font: 500 27px/33px "Inter", sans-serif;
   text-align: center;
-  word-break: break-word;
+
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 @media (min-width: 768px) {
@@ -14,5 +16,6 @@
 
     font-size: 42px;
     line-height: 48px;
+    text-align: left;
   }
 }
