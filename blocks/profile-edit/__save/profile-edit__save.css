@@ -11,10 +11,6 @@
   border: none;
 
   background-color: #000;
-  /* Вроде в фигме указан радиус скругления именно 2px для "прямоугольника с заливкой" в кнопке. Если значение неверное, то какое нужно?
-    https://disk.yandex.ru/i/xvprdyQ0iCucAQ
-    https://disk.yandex.ru/i/1wfsjgZf-IsJwQ
-    Я понимаю что вопросы задавать ревьюверу запрещено, просто тут немного тупиковая ситуация. */
   border-radius: 2px;
 
   transition: background-color .3s ease;

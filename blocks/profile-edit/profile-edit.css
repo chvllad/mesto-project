@@ -1,6 +1,4 @@
 .profile-edit {
-  padding: var(--profile-edit-padding);
-
   display: grid;
   grid-template:
     "title"
@@ -10,10 +8,4 @@
     "status"
     "." var(--profile-edit-space-button)
     "save" / 1fr;
-
-  background-color: var(--profile-edit-form-bgcolor);
-  color: var(--profile-edit-form-color);
-
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
 }

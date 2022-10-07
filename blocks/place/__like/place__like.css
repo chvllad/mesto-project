@@ -10,9 +10,6 @@
   border: none;
 
   background-color: transparent;
-  /* Ни один браузер кроме Firefox не поддерживает clip-path для внешних svg. https://caniuse.com/?search=clip-path
-  Поэтому и использовался встроенный в html svg файл для реализации интересной анимации при наведении мыши.
-  В любом случае, поменял на простую анимацию плавного изменения прозрачности. */
   transition: opacity .15s ease-in-out;
 
   background-image: url('../../../images/like.svg');

@@ -1,9 +1,9 @@
 .page {
   margin: 0 auto;
-  padding: 24px 0 36px 0;
+  padding: 29px 0 36px 0;
 
   box-sizing: border-box;
-  max-width: 880px;
+  max-width: 918px; /* 880px + 19px + 19px */
   min-height: 100vh;
 
   display: flex;

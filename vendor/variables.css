@@ -10,16 +10,15 @@
   --profile-edit-button-space: 10px;
   --profile-add-button-image-size: 16px;
 
-  --profile-edit-padding: 22px 22px 25px 22px;
-  --profile-edit-form-bgcolor: #fff;
-  --profile-edit-form-color: #000;
   --profile-edit-space-title: 75px;
   --profile-edit-space-button: 45px;
+
+  --popup-background-color: #fff;
+  --popup-padding: 22px 22px 25px 22px;
 }
 
 @media (min-width: 576px) {
   :root {
-    --profile-edit-padding: 34px 36px 37px 36px;
     --profile-edit-space-title: 48px;
     --profile-edit-space-buttons: 48px;
   }
@@ -36,5 +35,7 @@
     --profile-edit-button-image-size: 10px;
     --profile-edit-button-space: 18px;
     --profile-add-button-image-size: 22px;
+
+    --popup-padding: 34px 36px 37px 36px;
   }
 }

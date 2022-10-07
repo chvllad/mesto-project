@@ -3,9 +3,12 @@
   top: -36px;
   right: 0;
 
+  padding: 0;
+
   grid-area: close;
   justify-self: start;
 
+  box-sizing: border-box;
   width: 20px;
   height: 20px;
 
