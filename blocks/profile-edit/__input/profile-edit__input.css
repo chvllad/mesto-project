@@ -2,12 +2,12 @@
   padding: 0 0 7px 0;
 
   border: none;
-  border-bottom: 2px solid transparent;
+  border-bottom: 1px solid transparent;
   outline: none;
 
   background-image: linear-gradient(var(--profile-edit-form-bgcolor), var(--profile-edit-form-bgcolor)),
     linear-gradient(to right, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2) 100%);
-  background-size: 201% 2px;
+  background-size: 201% 1px;
   background-origin: border-box;
   background-clip: padding-box, border-box;
   background-position-x: right;

@@ -1,3 +1,5 @@
 .page__places {
-  grid-area: places;
+  margin: var(--page-profile-space) var(--page-min-horizontal-space) 0 var(--page-min-horizontal-space);
+
+  flex: auto;
 }

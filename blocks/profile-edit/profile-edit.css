@@ -1,10 +1,6 @@
 .profile-edit {
   padding: var(--profile-edit-padding);
 
-  box-sizing: border-box;
-  max-height: 100%;
-  overflow-y: auto;
-
   display: grid;
   grid-template:
     "title"
@@ -18,6 +14,6 @@
   background-color: var(--profile-edit-form-bgcolor);
   color: var(--profile-edit-form-color);
 
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
 }

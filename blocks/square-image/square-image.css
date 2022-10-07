@@ -1,11 +1,7 @@
 .square-image {
-  position: relative;
-}
+  max-width: 100%;
+  height: auto;
 
-.square-image::before {
-  content: '';
-
-  padding-top: 100%;
-
-  display: block;
+  aspect-ratio: 1;
+  object-fit: cover;
 }

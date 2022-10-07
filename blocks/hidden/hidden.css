@@ -1,7 +1,0 @@
-.hidden {
-  width: 0;
-  height: 0;
-  position: fixed;
-  clip: rect(0, 0, 0, 0);
-  overflow: hidden;
-}

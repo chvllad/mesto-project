@@ -10,7 +10,9 @@
   background-size: var(--profile-add-button-image-size) var(--profile-add-button-image-size);
   background-position: center;
 
-  border: 1px solid #fff;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  outline: none;
 
   transition: opacity .15s ease-in;
 }

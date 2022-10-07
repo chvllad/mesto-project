@@ -1,5 +1,6 @@
 :root {
-  --page-header-template: "header header header";
+  --page-min-horizontal-space: 19px;
+  --page-header-min-horizontal-space: 0px;
   --page-header-space: 42px;
   --page-profile-space: 36px;
   --page-places-space: 48px;
@@ -26,7 +27,7 @@
 
 @media (min-width: 768px) {
   :root {
-    --page-header-template: ". header .";
+    --page-header-min-horizontal-space: var(--page-min-horizontal-space);
     --page-header-space: 40px;
     --page-profile-space: 50px;
     --page-places-space: 66px;
