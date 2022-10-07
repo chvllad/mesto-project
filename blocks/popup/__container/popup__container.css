@@ -14,10 +14,3 @@
   background-color: var(--popup-background-color);
   color: #000;
 }
-
-/* Move content to the top in smartphones if any element is focused */
-@media (pointer: coarse) {
-  .popup__container:focus-within {
-    margin-top: 0;
-  }
-}
