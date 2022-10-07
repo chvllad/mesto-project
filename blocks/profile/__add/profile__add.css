@@ -1,4 +1,5 @@
 .profile__add {
+  box-sizing: border-box;
   height: 50px;
 
   grid-area: add;

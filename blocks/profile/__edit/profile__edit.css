@@ -1,6 +1,7 @@
 .profile__edit {
   margin-left: var(--profile-edit-button-space);
 
+  box-sizing: border-box;
   width: var(--profile-edit-button-size);
   height: var(--profile-edit-button-size);
 
