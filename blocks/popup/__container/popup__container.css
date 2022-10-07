@@ -1,10 +1,10 @@
-.popup__wrapper {
+.popup__container {
   margin: 56px 18px 8px 18px;
   position: relative;
 }
 
 @media (min-width: 480px) {
-  .popup__wrapper {
+  .popup__container {
     margin-left: auto;
     margin-right: auto;
     width: 430px;
@@ -12,7 +12,7 @@
 }
 
 @media (min-height: 432px) {
-  .popup__wrapper {
+  .popup__container {
     margin-top: auto;
     margin-bottom: auto;
   }
@@ -20,7 +20,7 @@
 
 /* Move content to the top in smartphones if any element is focused */
 @media (pointer: coarse) {
-  .popup__wrapper:focus-within {
+  .popup__container:focus-within {
     margin-top: 56px;
   }
 }
