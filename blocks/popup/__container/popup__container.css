@@ -1,5 +1,4 @@
 .popup__container {
-  margin: auto;
   padding: var(--popup-padding);
   position: relative;
 
