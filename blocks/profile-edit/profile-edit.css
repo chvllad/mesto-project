@@ -4,8 +4,8 @@
     "title"
     "." var(--profile-edit-space-title)
     "name"
-    "." 30px
+    "." 32px
     "status"
-    "." var(--profile-edit-space-button)
+    "." 49px
     "save" / 1fr;
 }

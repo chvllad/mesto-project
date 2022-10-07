@@ -1,26 +1,23 @@
 .popup__container {
-  margin: 56px 18px 8px 18px;
+  margin: auto;
+  padding: var(--popup-padding);
   position: relative;
-}
 
-@media (min-width: 480px) {
-  .popup__container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 430px;
-  }
-}
+  grid-area: el;
 
-@media (min-height: 432px) {
-  .popup__container {
-    margin-top: auto;
-    margin-bottom: auto;
-  }
+  box-sizing: border-box;
+  width: 100%;
+
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+
+  background-color: var(--popup-background-color);
+  color: #000;
 }
 
 /* Move content to the top in smartphones if any element is focused */
 @media (pointer: coarse) {
   .popup__container:focus-within {
-    margin-top: 56px;
+    margin-top: 0;
   }
 }

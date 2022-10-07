@@ -3,11 +3,18 @@
   top: 0;
   left: 0;
 
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
 
+  overflow-y: auto;
+
   display: none;
-  grid-template: "." minmax(0, auto) / 1fr;
+  grid-template:
+    ". .  ." minmax(56px, 1fr)
+    ". el ."
+    ". .  ." minmax(8px, 1fr)
+    / minmax(18px, 1fr) minmax(auto, 430px) minmax(18px, 1fr);
 
   background-color: rgba(0, 0, 0, .5);
 }
