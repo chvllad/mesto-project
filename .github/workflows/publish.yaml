@@ -29,7 +29,8 @@ jobs:
           uses: Cyb3r-Jak3/html5validator-action@v7.1.1
           with:
             root: '.'
-            css: true
+            # Can't recognize aspect-ratio rule
+            css: false
   # Single deploy job since we're just deploying
   deploy:
     needs: check_validator
