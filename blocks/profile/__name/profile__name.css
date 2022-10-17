@@ -3,13 +3,11 @@
 
   grid-area: name;
 
-  overflow: hidden;
-
   font: 500 27px/33px "Inter", sans-serif;
   text-align: center;
 
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 @media (min-width: 768px) {
