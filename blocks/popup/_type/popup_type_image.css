@@ -1,5 +1,4 @@
 .popup_type_image {
-  display: grid;
   grid-template:
     ". .  ." minmax(32px, 1fr)
     ". el ."
