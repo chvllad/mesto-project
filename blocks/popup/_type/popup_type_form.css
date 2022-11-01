@@ -3,7 +3,6 @@
 
   overflow-y: auto;
 
-  display: grid;
   grid-template:
     ". .  ." var(--popup-top-space)
     ". el ."
