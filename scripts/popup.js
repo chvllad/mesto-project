@@ -29,7 +29,6 @@ const closePopup = (force = false) => {
   }
   isClosing = true;
   popupEl.addEventListener('animationend', function animationEnd() {
-    console.log('aend');
     if (isClosing) {
       isClosing = false;
       clearPopupClasses();
