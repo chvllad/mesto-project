@@ -1,0 +1,21 @@
+.popup_type_form {
+  --popup-top-space: minmax(56px, 1fr);
+
+  overflow-y: auto;
+
+  display: grid;
+  grid-template:
+    ". .  ." var(--popup-top-space)
+    ". el ."
+    ". .  ." minmax(8px, 1fr)
+    / minmax(18px, 1fr) minmax(auto, 430px) minmax(18px, 1fr);
+
+    background-color: rgba(0, 0, 0, .5);
+}
+
+/* Move content to the top in smartphones if any element is focused */
+@media (pointer: coarse) {
+  .popup_type_form:focus-within {
+    --popup-top-space: 56px;
+  }
+}

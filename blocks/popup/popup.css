@@ -1,6 +1,4 @@
 .popup {
-  --popup-top-space: minmax(56px, 1fr);
-
   position: fixed;
   top: 0;
   left: 0;
@@ -9,21 +7,5 @@
   width: 100%;
   height: 100%;
 
-  overflow-y: auto;
-
   display: none;
-  grid-template:
-    ". .  ." var(--popup-top-space)
-    ". el ."
-    ". .  ." minmax(8px, 1fr)
-    / minmax(18px, 1fr) minmax(auto, 430px) minmax(18px, 1fr);
-
-  background-color: rgba(0, 0, 0, .5);
-}
-
-/* Move content to the top in smartphones if any element is focused */
-@media (pointer: coarse) {
-  .popup:focus-within {
-    --popup-top-space: 56px;
-  }
 }

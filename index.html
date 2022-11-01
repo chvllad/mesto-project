@@ -22,51 +22,7 @@
       <button class="profile__add" type="button" aria-label="Добавить место"></button>
     </section>
     <section class="page__places places" aria-label="Посещённые места">
-      <ul class="places__list">
-        <li>
-          <article class="place">
-            <h2 class="place__name">Карачаевск</h2>
-            <img src="images/places/karachaevsk.jpg" alt="карачаевск" class="square-image place__img">
-            <button class="like-button place__like" type="button" aria-label="Лайк"></button>
-          </article>
-        </li>
-        <li>
-          <article class="place">
-            <h2 class="place__name">Гора Эльбрус</h2>
-            <img src="images/places/elbrus.jpg" alt="Гора Эльбрус" class="square-image place__img">
-            <button class="like-button place__like" type="button" aria-label="Лайк"></button>
-          </article>
-        </li>
-        <li>
-          <article class="place">
-            <h2 class="place__name">Домбай</h2>
-            <img src="images/places/dombai.jpg" alt="Домбай" class="square-image place__img">
-            <button class="like-button place__like" type="button" aria-label="Лайк"></button>
-          </article>
-        </li>
-        <li>
-          <article class="place">
-            <h2 class="place__name">Озеро Любви</h2>
-            <img src="images/places/lake-of-love.jpg" alt="Озеро Любви" class="square-image place__img">
-            <button class="like-button place__like" type="button" aria-label="Лайк"></button>
-          </article>
-        </li>
-        <li>
-          <article class="place">
-            <h2 class="place__name" title="Долина Софии и Софийские водопады">Долина Софии и Софийские водопады</h2>
-            <img src="images/places/sofia-waterfalls.jpg" alt="Долина Софии и Софийские водопады"
-              class="square-image place__img">
-            <button class="like-button place__like" type="button" aria-label="Лайк"></button>
-          </article>
-        </li>
-        <li>
-          <article class="place">
-            <h2 class="place__name" title="Туманлы-Кель">Туманлы-Кель</h2>
-            <img src="images/places/tumanly-kel.jpg" alt="Туманлы-Кель" class="square-image place__img">
-            <button class="like-button place__like" type="button" aria-label="Лайк"></button>
-          </article>
-        </li>
-      </ul>
+      <ul class="places__list"></ul>
     </section>
   </main>
   <footer class="page__footer footer">
@@ -75,17 +31,29 @@
   <div class="popup">
     <div class="popup__container">
       <button class="popup__close" type="button" aria-label="Закрыть"></button>
-      <form action="#" class="profile-edit" name="profile-form">
-        <h2 class="profile-edit__title">Редактировать профиль</h2>
-        <input class="profile-edit__input profile-edit__input_name_name" id="name" name="name" type="text"
-          placeholder="Введите имя">
-        <input class="profile-edit__input profile-edit__input_name_status" id="status" name="status" type="text"
-          placeholder="Введите статус">
-        <button class="profile-edit__save" type="submit">Сохранить</button>
+      <div class="image-view popup__inactive">
+        <img src="images/places/tumanly-kel.jpg" alt="" class="image-view__image">
+        <p class="image-view__title">Туманлы-Кель</p>
+      </div>
+      <form action="#" class="popup-form popup__inactive">
+        <h2 class="popup-form__title"></h2>
+        <input class="popup-input popup-form__input popup-form__input_first" required type="text">
+        <input class="popup-input popup-form__input popup-form__input_second" required type="text">
+        <button class="popup-form__save" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
-  <script src="scripts/script.js" async></script>
+  <template id="card-template">
+    <li>
+      <article class="place">
+        <h2 class="place__name" title=""></h2>
+        <img src="" alt="" class="square-image place__img">
+        <button class="place__remove" type="button" aria-label="Удалить"></button>
+        <button class="place__like" type="button" aria-label="Лайк" aria-pressed="false"></button>
+      </article>
+    </li>
+  </template>
+  <script type="module" src="scripts/main.js"></script>
 </body>
 
 </html>

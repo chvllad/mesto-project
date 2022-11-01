@@ -1,11 +1,11 @@
-.profile-edit {
+.popup-form {
   display: grid;
   grid-template:
     "title"
-    "." var(--profile-edit-space-title)
-    "name"
+    "." var(--popup-form-space-title)
+    "first-input"
     "." 32px
-    "status"
+    "second-input"
     "." 49px
     "save" / 1fr;
 }

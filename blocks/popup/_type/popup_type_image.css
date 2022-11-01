@@ -1,0 +1,10 @@
+.popup_type_image {
+  display: grid;
+  grid-template:
+    ". .  ." minmax(32px, 1fr)
+    ". el ."
+    ". .  ." minmax(32px, 1fr)
+    / minmax(18px, 1fr) auto minmax(18px, 1fr);
+
+    background-color: rgba(0, 0, 0, .9);
+}
