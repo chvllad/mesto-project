@@ -1,3 +1,8 @@
 .place__img {
+  width: 0;
+  min-width: 100%;
+
   grid-area: img;
+
+  cursor: pointer;
 }

@@ -1,4 +1,4 @@
-.profile-edit__title {
+.popup-form__title {
   margin: 0;
   grid-area: title;
 
@@ -6,7 +6,7 @@
 }
 
 @media (min-width: 576px) {
-  .profile-edit__title {
+  .popup-form__title {
     font-size: 24px;
     line-height: 29px;
   }

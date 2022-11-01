@@ -1,0 +1,28 @@
+.place__remove {
+  margin: 20px;
+  padding: 0;
+
+  width: 18px;
+  height: 19px;
+
+  grid-area: img;
+  justify-self: right;
+  align-self: start;
+
+  border: none;
+
+  background-color: transparent;
+  transition: opacity .15s ease-in-out;
+
+  background-image: url('../../../images/remove.svg');
+  background-size: cover;
+
+  filter: drop-shadow(0 0 5px black);
+}
+
+@media (hover: hover) {
+  .place__remove:hover {
+    cursor: pointer;
+    opacity: .6;
+  }
+}

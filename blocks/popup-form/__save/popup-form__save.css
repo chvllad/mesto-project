@@ -1,4 +1,4 @@
-.profile-edit__save {
+.popup-form__save {
   padding: 14px 0;
 
   outline: none;
@@ -16,20 +16,20 @@
   transition: background-color .3s ease;
 }
 
-.profile-edit__save:hover,
-.profile-edit__save:focus {
+.popup-form__save:hover,
+.popup-form__save:focus {
   background-color: rgba(0, 0, 0, .8);
   cursor: pointer;
 }
 
 @media (hover: none) {
-  .profile-edit__save:hover {
+  .popup-form__save:hover {
     background-color: #000;
   }
 }
 
 @media (min-width: 576px) {
-  .profile-edit__save {
+  .popup-form__save {
     font-size: 18px;
     line-height: 22px;
   }
