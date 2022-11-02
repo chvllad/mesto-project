@@ -9,8 +9,8 @@
 
   display: grid;
 
-  transition: opacity 0.2s ease;
+  transition: visibility 0.2s ease, opacity 0.2s ease;
 
+  visibility: hidden;
   opacity: 0;
-  pointer-events: none;
 }
