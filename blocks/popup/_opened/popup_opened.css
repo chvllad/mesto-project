@@ -1,5 +1,4 @@
 .popup_opened {
-  display: grid;
-
-  animation: .2s ease-out both popup-open;
+  opacity: 1;
+  pointer-events: all;
 }

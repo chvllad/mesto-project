@@ -1,4 +1,4 @@
-import { EventBus } from './eventbus.js';
+import { openImageView } from "./popup.js";
 
 const setIsLiked = (likeEl, isLiked) => {
   if (isLiked) {
@@ -10,23 +10,13 @@ const setIsLiked = (likeEl, isLiked) => {
   }
 };
 
-const cardsList = document.querySelector('.places__list');
-
-const createCard = ({ name, link }) => {
+export const createCard = ({ name, link }) => {
   const el = document.querySelector('#card-template').content.firstElementChild.cloneNode(true);
 
   const nameEl = el.querySelector('.place__name');
   nameEl.title = nameEl.textContent = name;
 
-  let width = 1;
-  let height = 1;
-
   const imgEl = el.querySelector('.place__img');
-  imgEl.addEventListener('load', function loadImageCompleted() {
-    imgEl.removeEventListener('load', loadImageCompleted);
-    height = imgEl.naturalHeight;
-    width = imgEl.naturalWidth;
-  });
   imgEl.src = link;
   imgEl.title = imgEl.alt = name;
 
@@ -43,9 +33,17 @@ const createCard = ({ name, link }) => {
 
   removeEl.addEventListener('click', () => void el.remove());
 
-  imgEl.addEventListener('click', () => void EventBus.emit('popup', { type: 'image-show', url: link, title: name, width, height }));
+  imgEl.addEventListener('click', () => void openImageView(name, link));
 
-  cardsList.append(el);
+  return el;
 };
 
-EventBus.register('create-card', createCard);
+const cardsList = document.querySelector('.places__list');
+
+export const insertCard = (data) => {
+  if (Array.isArray(data)) {
+    data.reverse().forEach(el => cardsList.prepend(el));
+  } else {
+    cardsList.prepend(data);
+  }
+};

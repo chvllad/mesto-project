@@ -1,144 +1,76 @@
-import { EventBus } from './eventbus.js';
-
-let onClose = null;
+import { createCard, insertCard } from "./card.js";
 
 const closePopup = (popupEl) => {
-  onClose?.call();
-  onClose = null;
-
-  popupEl.addEventListener('animationend', function animationEnd() {
-    popupEl.removeAttribute('style');
-    popupEl.classList.remove('popup_opened');
-    popupEl.removeEventListener('animationend', animationEnd);
-  });
-  popupEl.setAttribute('style', 'animation: .2s ease-in both popup-close;');
+  popupEl.classList.remove('popup_opened');
+  popupEl.setAttribute('aria-hidden', 'true');
 };
 
 const showPopup = (popupEl) => {
   popupEl.classList.add('popup_opened');
+  popupEl.setAttribute('aria-hidden', 'false');
 };
 
-const openImageView = (() => {
+export const openImageView = (() => {
   const popupEl = document.querySelector('.image-view-popup');
   const imageViewEl = popupEl.querySelector('.image-view');
   const titleEl = imageViewEl.querySelector('.image-view__title');
   const imageEl = imageViewEl.querySelector('.image-view__image');
 
-  let imgSize = null;
-
-  const computeImgSize = ([width, height]) => {
-    const MAX_IMAGE_SIZE = .75;
-
-    const maxHeight = document.defaultView.innerHeight * MAX_IMAGE_SIZE;
-    const maxWidth = document.defaultView.innerWidth * MAX_IMAGE_SIZE;
-
-    const widthResize = maxWidth / width;
-    const heightResize = maxHeight / height;
-    const minResize = Math.min(widthResize, heightResize);
-
-    const totalWidth = width * minResize;
-    const totalHeight = height * minResize;
-
-    imageViewEl.setAttribute('style', `--image-width: ${totalWidth.toFixed(3)}px; --image-height: ${totalHeight.toFixed(3)}px;`);
-  }
-
-  document.defaultView.addEventListener('resize', () => {
-    if (imgSize === null) {
-      return;
-    }
-    requestAnimationFrame(() => computeImgSize(imgSize));
-  })
-
-  return (title, url, width, height) => {
-    onClose = () => {
-      imgSize = null;
-    };
-
-    imgSize = [width, height];
-    computeImgSize(imgSize);
-
-    titleEl.textContent = imageEl.alt = title;
+  return (title, url) => {
+    titleEl.textContent = title;
     imageEl.src = url;
+    imageEl.alt = title;
 
     showPopup(popupEl);
   };
 })();
 
-const createFormOpener = (popupEl, onSubmit) => {
+export const openProfileEdit = (() => {
+  const popupEl = document.querySelector('.profile-edit-popup');
+  const formEl = popupEl.querySelector('.popup-form');
+  const inputEls = Array.from(formEl.querySelectorAll('.popup-form__input'));
+
+  const nameEl = document.querySelector('.profile__name');
+  const statusEl = document.querySelector('.profile__status');
+
+  formEl.addEventListener('submit', e => {
+    e.preventDefault();
+
+    nameEl.textContent = inputEls[0].value;
+    statusEl.textContent = inputEls[1].value;
+
+    closePopup(popupEl);
+  });
+
+  return () => {
+    inputEls[0].value = nameEl.textContent;
+    inputEls[1].value = statusEl.textContent;
+    showPopup(popupEl);
+  };
+})();
+
+export const openAddCard = (() => {
+  const popupEl = document.querySelector('.add-card-popup');
   const formEl = popupEl.querySelector('.popup-form');
   const inputEls = Array.from(formEl.querySelectorAll('.popup-form__input'));
 
   formEl.addEventListener('submit', e => {
     e.preventDefault();
-
-    onSubmit(inputEls.map(el => el.value));
+    insertCard(createCard({
+      name: inputEls[0].value,
+      link: inputEls[1].value,
+    }));
 
     closePopup(popupEl);
   });
 
-  return (initialValues) => {
-    inputEls.forEach((el, idx) => {
-      el.value = initialValues[idx] ?? '';
-    });
-
+  return () => {
+    inputEls[0].value = inputEls[1].value = '';
     showPopup(popupEl);
   };
-};
-
-const openProfileEdit = (() => {
-  const popupEl = document.querySelector('.profile-edit-popup');
-
-  const nameEl = document.querySelector('.profile__name');
-  const statusEl = document.querySelector('.profile__status');
-
-  const openForm = createFormOpener(popupEl, ([nameValue, statusValue]) => {
-    nameEl.textContent = nameValue;
-    statusEl.textContent = statusValue;
-  });
-
-  return () => {
-    openForm([nameEl.textContent, statusEl.textContent]);
-  };
 })();
 
-const openAddCard = (() => {
-  const popupEl = document.querySelector('.add-card-popup');
-
-  const openForm = createFormOpener(popupEl, ([nameValue, linkValue]) => {
-    EventBus.emit('create-card', {
-      name: nameValue,
-      link: linkValue,
-    });
-  });
-
-  return () => {
-    openForm(['', '']);
-  };
-})();
-
-const closeButtons = document.querySelectorAll('.popup__close');
-
-closeButtons.forEach((button) => {
+document.querySelectorAll('.popup__close').forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('mousedown', () => closePopup(popup));
 });
-
-const handlePopupEvent = ({ type, ...data }) => {
-  switch (type) {
-    case 'image-show': {
-      const { title, url, width, height } = data;
-      openImageView(title, url, width, height);
-      break;
-    }
-    case 'profile-edit':
-      openProfileEdit();
-      break;
-    case 'add-card':
-      openAddCard();
-      break;
-    default:
-      throw new Error('Uknown popup type');
-  }
-};
-
-EventBus.register('popup', handlePopupEvent);

@@ -1,7 +1,4 @@
 .image-view {
-  width: var(--image-width);
-  height: var(--image-height);
-
   display: grid;
   grid-template: "el";
 }

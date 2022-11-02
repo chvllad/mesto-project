@@ -1,6 +1,5 @@
-import { EventBus } from './eventbus.js';
-import './popup.js';
-import './card.js';
+import { openAddCard, openProfileEdit } from './popup.js';
+import { createCard, insertCard } from './card.js';
 
 const initialCards = [
   {
@@ -29,14 +28,12 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach(card => {
-  EventBus.emit('create-card', card);
-});
+insertCard(initialCards.map(createCard));
 
 document.querySelector('.profile__edit').addEventListener('click', () => {
-  EventBus.emit('popup', { type: 'profile-edit' })
+  openProfileEdit();
 });
 
 document.querySelector('.profile__add').addEventListener('click', () => {
-  EventBus.emit('popup', { type: 'add-card' })
+  openAddCard();
 });
