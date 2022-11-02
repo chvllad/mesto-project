@@ -1,7 +1,6 @@
 @import url('../vendor/normalize.css');
 @import url('../vendor/fonts.css');
 @import url('../vendor/variables.css');
-@import url('../vendor/animations.css');
 
 @import url('../blocks/square-image/square-image.css');
 @import url('../blocks/square-image/_rounded/square-image_rounded.css');
