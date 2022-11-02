@@ -2,12 +2,10 @@ import { createCard, insertCard } from "./card.js";
 
 const closePopup = (popupEl) => {
   popupEl.classList.remove('popup_opened');
-  popupEl.setAttribute('aria-hidden', 'true');
 };
 
 const showPopup = (popupEl) => {
   popupEl.classList.add('popup_opened');
-  popupEl.setAttribute('aria-hidden', 'false');
 };
 
 export const openImageView = (() => {
