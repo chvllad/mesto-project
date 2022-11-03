@@ -10,8 +10,10 @@ const setIsLiked = (likeEl, isLiked) => {
   }
 };
 
+const templateEl = document.querySelector('#card-template').content.firstElementChild;
+
 export const createCard = ({ name, link }) => {
-  const el = document.querySelector('#card-template').content.firstElementChild.cloneNode(true);
+  const el = templateEl.cloneNode(true);
 
   const nameEl = el.querySelector('.place__name');
   nameEl.title = nameEl.textContent = name;

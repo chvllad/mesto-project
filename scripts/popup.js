@@ -8,67 +8,96 @@ const showPopup = (popupEl) => {
   popupEl.classList.add('popup_opened');
 };
 
-export const openImageView = (() => {
-  const popupEl = document.querySelector('.image-view-popup');
-  const imageViewEl = popupEl.querySelector('.image-view');
-  const titleEl = imageViewEl.querySelector('.image-view__title');
-  const imageEl = imageViewEl.querySelector('.image-view__image');
+class ImageViewImpl {
+  constructor() {
+    this._popupEl = document.querySelector('.image-view-popup');
+    this._imageViewEl = this._popupEl.querySelector('.image-view');
+    this._titleEl = this._imageViewEl.querySelector('.image-view__title');
+    this._imageEl = this._imageViewEl.querySelector('.image-view__image');
+  }
 
-  return (title, url) => {
-    titleEl.textContent = title;
-    imageEl.src = url;
-    imageEl.alt = title;
+  open(title, url) {
+    this._titleEl.textContent = title;
+    this._imageEl.src = url;
+    this._imageEl.alt = title;
 
-    showPopup(popupEl);
-  };
-})();
+    showPopup(this._popupEl);
+  }
+}
 
-export const openProfileEdit = (() => {
-  const popupEl = document.querySelector('.profile-edit-popup');
-  const formEl = popupEl.querySelector('.popup-form');
-  const inputEls = Array.from(formEl.querySelectorAll('.popup-form__input'));
+const imageView = new ImageViewImpl();
+export const openImageView = (...args) => imageView.open(...args);
 
-  const nameEl = document.querySelector('.profile__name');
-  const statusEl = document.querySelector('.profile__status');
+class PopupFormImpl {
+  #popupEl;
+  _inputEls;
 
-  formEl.addEventListener('submit', e => {
-    e.preventDefault();
+  constructor(popupEl) {
+    this.#popupEl = popupEl;
+    const formEl = this.#popupEl.querySelector('.popup-form');
+    this._inputEls = Array.from(formEl.querySelectorAll('.popup-form__input'));
 
-    nameEl.textContent = inputEls[0].value;
-    statusEl.textContent = inputEls[1].value;
+    formEl.addEventListener('submit', e => {
+      e.preventDefault();
 
-    closePopup(popupEl);
-  });
+      this._onSubmit();
 
-  return () => {
-    inputEls[0].value = nameEl.textContent;
-    inputEls[1].value = statusEl.textContent;
-    showPopup(popupEl);
-  };
-})();
+      closePopup(this.#popupEl);
+    });
+  }
 
-export const openAddCard = (() => {
-  const popupEl = document.querySelector('.add-card-popup');
-  const formEl = popupEl.querySelector('.popup-form');
-  const inputEls = Array.from(formEl.querySelectorAll('.popup-form__input'));
+  open() {
+    this._onOpen();
+    showPopup(this.#popupEl);
+  }
+}
 
-  formEl.addEventListener('submit', e => {
-    e.preventDefault();
+class ProfileEditImpl extends PopupFormImpl {
+  #nameEl;
+  #statusEl;
+
+  constructor() {
+    super(document.querySelector('.profile-edit-popup'));
+
+    this.#nameEl = document.querySelector('.profile__name');
+    this.#statusEl = document.querySelector('.profile__status');
+  }
+
+  _onSubmit() {
+    this.#nameEl.textContent = this._inputEls[0].value;
+    this.#statusEl.textContent = this._inputEls[1].value;
+  }
+
+  _onOpen() {
+    this._inputEls[0].value = this.#nameEl.textContent;
+    this._inputEls[1].value = this.#statusEl.textContent;
+  }
+}
+
+const profileEdit = new ProfileEditImpl();
+export const openProfileEdit = () => profileEdit.open();
+
+class AddCardImpl extends PopupFormImpl {
+  constructor() {
+    super(document.querySelector('.add-card-popup'));
+  }
+
+  _onSubmit() {
     insertCard(createCard({
-      name: inputEls[0].value,
-      link: inputEls[1].value,
+      name: this._inputEls[0].value,
+      link: this._inputEls[1].value,
     }));
+  }
 
-    closePopup(popupEl);
-  });
+  _onOpen() {
+    this._inputEls[0].value = this._inputEls[1].value = '';
+  }
+}
 
-  return () => {
-    inputEls[0].value = inputEls[1].value = '';
-    showPopup(popupEl);
-  };
-})();
+const addCard = new AddCardImpl();
+export const openAddCard = () => addCard.open();
 
-document.querySelectorAll('.popup__close').forEach((button) => {
+document.querySelectorAll('.popup__close').forEach(button => {
   const popup = button.closest('.popup');
   button.addEventListener('mousedown', () => closePopup(popup));
 });

@@ -6,8 +6,9 @@
   font: 400 14px/17px "Inter", sans-serif;
   text-align: center;
 
-  word-break: normal;
-  overflow-wrap: anywhere;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
