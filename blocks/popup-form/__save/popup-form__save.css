@@ -5,32 +5,39 @@
 
   grid-area: save;
 
-  font: 400 14px/17px "Inter", sans-serif;
-  color: #fff;
+  font: 400 14px/17px Inter, sans-serif;
+  color: rgba(0 0 0 / 20%);
 
-  border: none;
-
-  background-color: #000;
+  border: 1px solid rgba(0 0 0 / 20%);
   border-radius: 2px;
 
-  transition: background-color .3s ease;
-}
+  background-color: transparent;
 
-.popup-form__save:hover,
-.popup-form__save:focus {
-  background-color: rgba(0, 0, 0, .8);
-  cursor: pointer;
-}
-
-@media (hover: none) {
-  .popup-form__save:hover {
-    background-color: #000;
-  }
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @media (min-width: 576px) {
   .popup-form__save {
     font-size: 18px;
     line-height: 22px;
+  }
+}
+
+.popup-form:valid > .popup-form__save {
+  color: #fff;
+
+  border: none;
+  background-color: #000;
+  cursor: pointer;
+}
+
+.popup-form:valid > .popup-form__save_active:hover,
+.popup-form:valid > .popup-form__save_active:focus {
+  background-color: rgba(0 0 0 / 80%);
+}
+
+@media (hover: none) {
+  .popup-form:valid > .popup-form__save_active:hover {
+    background-color: #000;
   }
 }

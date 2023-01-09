@@ -9,7 +9,7 @@
     ". .  ." minmax(8px, 1fr)
     / minmax(18px, 1fr) minmax(auto, 430px) minmax(18px, 1fr);
 
-    background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0 0 0 / 50%);
 }
 
 /* Move content to the top in smartphones if any element is focused */

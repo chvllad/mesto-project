@@ -21,19 +21,41 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check_validator:
+  linters:
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@v2
-        - name: Checks HTML5
-          uses: Cyb3r-Jak3/html5validator-action@v7.1.1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      - run: npm ci
+      - name: Run ESLint and Stylelint
+        run: npm run lint
+  w3c_validator:
+    needs: linters
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check HTML5
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: '.'
+          # Can't recognize aspect-ratio rule
+          css: false
+          extra: --show-warnings --ignore "Unicode Private Use Area"
+  bem_validator:
+    needs: w3c_validator
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v3
+        - name: Check BEM
+          uses: chvllad/bem-validator-action@v0.5
           with:
-            root: '.'
-            # Can't recognize aspect-ratio rule
-            css: false
+            html: '*.html'
   # Single deploy job since we're just deploying
   deploy:
-    needs: check_validator
+    needs: bem_validator
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

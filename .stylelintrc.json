@@ -1,0 +1,22 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "indentation": 2,
+    "declaration-empty-line-before": ["always", {
+      "except": ["first-nested"],
+      "ignore": ["after-comment", "after-declaration"]
+    }],
+    "custom-property-empty-line-before": ["always", {
+      "except": ["first-nested", "after-comment", "after-custom-property"],
+      "ignore": ["after-comment"]
+    }],
+    "max-empty-lines": 2,
+    "selector-class-pattern": null,
+    "value-keyword-case": ["lower", {
+      "ignoreProperties": ["transition"]
+    }]
+  },
+  "ignoreFiles": [
+    "vendor/normalize.css"
+  ]
+}

@@ -9,8 +9,6 @@
 
   display: grid;
 
-  transition: visibility 0.2s ease, opacity 0.2s ease;
-
   visibility: hidden;
   opacity: 0;
 }

@@ -3,7 +3,7 @@
 
   grid-area: status;
 
-  font: 400 14px/17px "Inter", sans-serif;
+  font: 400 14px/17px Inter, sans-serif;
   text-align: center;
 
   text-overflow: ellipsis;

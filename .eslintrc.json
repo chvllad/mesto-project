@@ -1,0 +1,14 @@
+{
+  "extends": ["airbnb-base"],
+  "env": {
+    "browser": true,
+    "node": false,
+    "es6": true
+  },
+  "rules": {
+    "import/extensions": [2, "always"]
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  }
+}

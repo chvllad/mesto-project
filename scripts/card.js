@@ -1,4 +1,4 @@
-import { openImageView } from "./popup.js";
+import openImageView from './modal/image-view.js';
 
 const setIsLiked = (likeEl, isLiked) => {
   if (isLiked) {
@@ -16,11 +16,13 @@ export const createCard = ({ name, link }) => {
   const el = templateEl.cloneNode(true);
 
   const nameEl = el.querySelector('.place__name');
-  nameEl.title = nameEl.textContent = name;
+  nameEl.title = name;
+  nameEl.textContent = name;
 
   const imgEl = el.querySelector('.place__img');
   imgEl.src = link;
-  imgEl.title = imgEl.alt = name;
+  imgEl.title = name;
+  imgEl.alt = name;
 
   const removeEl = el.querySelector('.place__remove');
 
@@ -33,9 +35,9 @@ export const createCard = ({ name, link }) => {
     setIsLiked(likeEl, isLiked);
   });
 
-  removeEl.addEventListener('click', () => void el.remove());
+  removeEl.addEventListener('click', () => el.remove());
 
-  imgEl.addEventListener('click', () => void openImageView(name, link));
+  imgEl.addEventListener('click', () => openImageView(name, link));
 
   return el;
 };
@@ -44,7 +46,7 @@ const cardsList = document.querySelector('.places__list');
 
 export const insertCard = (data) => {
   if (Array.isArray(data)) {
-    data.reverse().forEach(el => cardsList.prepend(el));
+    data.reverse().forEach((el) => cardsList.prepend(el));
   } else {
     cardsList.prepend(data);
   }

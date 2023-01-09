@@ -5,5 +5,5 @@
     ". .  ." minmax(32px, 1fr)
     / minmax(18px, 1fr) auto minmax(18px, 1fr);
 
-    background-color: rgba(0, 0, 0, .9);
+  background-color: rgba(0 0 0 / 90%);
 }

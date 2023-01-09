@@ -1,0 +1,4 @@
+/* Prevents flickering while booting */
+.popup_animated {
+  transition: visibility 0.2s ease, opacity 0.2s ease;
+}

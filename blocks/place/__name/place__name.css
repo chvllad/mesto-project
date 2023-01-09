@@ -5,7 +5,7 @@
 
   overflow: hidden;
 
-  font: 900 24px/29px "Inter", sans-serif;
+  font: 900 24px/29px Inter, sans-serif;
   white-space: nowrap;
   text-overflow: ellipsis;
 }

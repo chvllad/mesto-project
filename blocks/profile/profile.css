@@ -9,8 +9,8 @@
     ". . ." 32px
     "add add add"
     / minmax(calc(var(--profile-edit-button-size) + var(--profile-edit-button-space) + 18.5px), 1fr)
-      minmax(0, auto) /* Won't break in case of overflow */
-      minmax(calc(var(--profile-edit-button-size) + var(--profile-edit-button-space) + 18.5px), 1fr);
+    minmax(0, auto) /* Won't break in case of overflow */
+    minmax(calc(var(--profile-edit-button-size) + var(--profile-edit-button-space) + 18.5px), 1fr);
 }
 
 @media (min-width: 768px) {

@@ -4,8 +4,12 @@
     "title"
     "." var(--popup-form-space-title)
     "first-input"
-    "." 32px
+    "." 5px
+    "first-error"
+    "." 12px
     "second-input"
-    "." 49px
+    "." 5px
+    "second-error"
+    "." 28px
     "save" / 1fr;
 }

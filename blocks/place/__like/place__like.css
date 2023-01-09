@@ -10,15 +10,15 @@
   border: none;
 
   background-color: transparent;
-  transition: opacity .15s ease-in-out;
+  transition: opacity 0.15s ease-in-out;
 
-  background-image: url('../../../images/like.svg');
+  background-image: url("../../../images/like.svg");
   background-size: cover;
 }
 
 @media (hover: hover) {
   .place__like:hover {
     cursor: pointer;
-    opacity: .5;
+    opacity: 0.5;
   }
 }

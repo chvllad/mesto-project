@@ -9,7 +9,7 @@
   align-self: center;
 
   background-color: transparent;
-  background-image: url('../../../images/profile-edit.svg');
+  background-image: url("../../../images/profile-edit.svg");
   background-repeat: no-repeat;
   background-size: var(--profile-edit-button-image-size) var(--profile-edit-button-image-size);
   background-position: center;
@@ -17,12 +17,12 @@
   border: 1px solid #fff;
   outline: none;
 
-  transition: opacity .15s ease-in;
+  transition: opacity 0.15s ease-in;
 }
 
 .profile__edit:hover,
 .profile__edit:focus {
-  opacity: .6;
+  opacity: 0.6;
 
   cursor: pointer;
 }

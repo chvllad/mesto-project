@@ -13,19 +13,19 @@
   height: 20px;
 
   background-color: transparent;
-  background-image: url('../../../images/close.svg');
+  background-image: url("../../../images/close.svg");
   background-size: contain;
 
   border: none;
   outline: none;
   cursor: pointer;
 
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
 
 @media (hover: hover) {
   .popup__close:hover {
-    opacity: .6;
+    opacity: 0.6;
   }
 }
 

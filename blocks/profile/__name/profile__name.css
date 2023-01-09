@@ -3,7 +3,7 @@
 
   grid-area: name;
 
-  font: 500 27px/33px "Inter", sans-serif;
+  font: 500 27px/33px Inter, sans-serif;
   text-align: center;
 
   text-overflow: ellipsis;

@@ -9,7 +9,7 @@
 
   overflow: hidden;
 
-  font: 400 12px/15px "Inter", sans-serif;
+  font: 400 12px/15px Inter, sans-serif;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
