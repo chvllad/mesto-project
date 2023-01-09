@@ -1,3 +1,5 @@
+import '../pages/index.css';
+
 import openAddCard from './modal/add-card.js';
 import openProfileEdit from './modal/profile-edit.js';
 import { createCard, insertCard } from './card.js';

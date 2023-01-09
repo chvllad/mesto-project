@@ -10,5 +10,16 @@
   },
   "parserOptions": {
     "ecmaVersion": "latest"
-  }
+  },
+  "overrides": [{
+    "files": ["./*.js"],
+    "rules": {
+      "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+      "no-console": "off"
+    },
+    "env": {
+      "node": true,
+      "browser": false
+    }
+  }]
 }

@@ -1,19 +1,38 @@
 {
-  "name": "project-linters",
+  "name": "mesto-project",
   "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "src/index.html",
   "scripts": {
     "lint": "eslint \"src/scripts/**/*.js\" && stylelint --config \"./.stylelintrc.json\" \"src/**/*.css\"",
-    "lint-fix": "eslint \"src/scripts/**/*.js\" --fix && stylelint --config \"./.stylelintrc.json\" \"src/**/*.css\" --fix"
+    "lint-fix": "eslint \"src/scripts/**/*.js\" --fix && stylelint --config \"./.stylelintrc.json\" \"src/**/*.css\" --fix",
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
   },
   "license": "Apache-2.0",
   "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "autoprefixer": "^10.4.13",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.3",
+    "cssnano": "^5.1.14",
     "eslint": "^8.29.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.2",
+    "postcss-loader": "^7.0.2",
     "stylelint": "^14.16.0",
-    "stylelint-config-standard": "^29.0.0"
+    "stylelint-config-standard": "^29.0.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "core-js": "^3.27.1"
   }
 }
