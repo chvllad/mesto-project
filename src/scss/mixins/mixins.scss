@@ -17,16 +17,22 @@
   border: none;
 }
 
-@mixin focus-hover {
-  &:focus {
-    @content();
-  }
-
+@mixin hover {
   @media (hover: hover) {
     &:hover {
       cursor: pointer;
       @content();
     }
+  }
+}
+
+@mixin focus-hover {
+  &:focus {
+    @content();
+  }
+
+  @include hover {
+    @content();
   }
 }
 

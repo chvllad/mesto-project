@@ -29,7 +29,11 @@
     background-image: url("../../images/like.svg");
     background-size: cover;
 
-    @include focus-hover-opacity(0.5);
+    @include hover-animation(opacity);
+
+    @include hover {
+      opacity: 0.5;
+    }
 
     &_active {
       background-image: url("../../images/like-active.svg");
