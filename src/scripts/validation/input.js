@@ -20,16 +20,15 @@ export default class InputValidator {
   }
 
   handleEvent() {
-    const { validity } = this.#inputEl;
-    this.isValid = validity.valid;
-    if (this.isValid) {
-      this.#errorEl.textContent = '';
-      return;
-    }
-    if (validity.patternMismatch) {
+    if (this.#inputEl.validity.patternMismatch) {
       this.#inputEl.setCustomValidity('Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы.');
     } else {
       this.#inputEl.setCustomValidity('');
+    }
+    this.isValid = this.#inputEl.validity.valid;
+    if (this.isValid) {
+      this.#errorEl.textContent = '';
+      return;
     }
     this.#errorEl.textContent = this.#inputEl.validationMessage;
   }

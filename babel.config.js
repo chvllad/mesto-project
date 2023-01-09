@@ -1,10 +1,9 @@
 const presets = [
   ['@babel/preset-env', {
     targets: {
-      edge: '17',
-      firefox: '50',
-      chrome: '64',
-      safari: '11.1',
+      firefox: '90',
+      chrome: '90',
+      safari: '12',
     },
     useBuiltIns: 'entry',
     corejs: {
