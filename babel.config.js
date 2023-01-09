@@ -3,7 +3,7 @@ const presets = [
     targets: {
       firefox: '90',
       chrome: '90',
-      safari: '12',
+      safari: '14.1',
     },
     useBuiltIns: 'entry',
     corejs: {
