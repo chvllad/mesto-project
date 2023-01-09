@@ -17,6 +17,6 @@
     }]
   },
   "ignoreFiles": [
-    "vendor/normalize.css"
+    "src/vendor/normalize.css"
   ]
 }
