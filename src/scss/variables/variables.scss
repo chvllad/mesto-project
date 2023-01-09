@@ -1,0 +1,22 @@
+$mobile-width: 576px;
+$tablet-width: 768px;
+$popup-background-color: #fff;
+
+:root {
+  --profile-edit-button-size: 18px;
+  --profile-edit-button-image-size: 7.5px;
+  --profile-edit-button-space: 10px;
+  --profile-add-button-image-size: 16px;
+  --popup-form-space-title: 75px;
+
+  @media (min-width: $mobile-width) {
+    --popup-form-space-title: 49px;
+  }
+
+  @media (min-width: $tablet-width) {
+    --profile-edit-button-size: 24px;
+    --profile-edit-button-image-size: 10px;
+    --profile-edit-button-space: 18px;
+    --profile-add-button-image-size: 22px;
+  }
+}

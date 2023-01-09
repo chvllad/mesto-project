@@ -1,0 +1,20 @@
+.header {
+  padding: 0 0 26px 27px;
+  border-bottom: 1px solid rgba(84 84 84 / 70%);
+
+  @include desktop {
+    padding: 0 0 37px;
+  }
+
+  &__logo {
+    width: 103.74px;
+    height: 24.4px;
+
+    object-fit: cover;
+
+    @include desktop {
+      width: 142px;
+      height: 33px;
+    }
+  }
+}

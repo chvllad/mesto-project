@@ -1,9 +1,0 @@
-.popup__container_type_form {
-  padding: var(--popup-padding);
-
-  box-shadow: 0 0 25px rgba(0 0 0 / 15%);
-  border-radius: 10px;
-
-  background-color: var(--popup-background-color);
-  color: #000;
-}

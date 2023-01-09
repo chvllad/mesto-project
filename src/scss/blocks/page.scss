@@ -1,0 +1,57 @@
+.page {
+  margin: 0 19px;
+  padding: 29px 0 36px;
+
+  box-sizing: border-box;
+  min-height: 100vh;
+
+  display: flex;
+  flex-flow: column nowrap;
+
+  background-color: #000;
+  color: #fff;
+
+  @include desktop {
+    padding: 45px 19px 60px;
+  }
+
+  &__block {
+    max-width: 880px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  &__content {
+    display: contents;
+  }
+
+  &__footer {
+    margin-top: 48px;
+
+    flex: none;
+
+    @include desktop {
+      margin-top: 66px;
+    }
+  }
+
+  &__places {
+    margin-top: 36px;
+
+    flex: auto;
+
+    @include desktop {
+      margin-top: 50px;
+    }
+  }
+
+  &__profile {
+    margin-top: 42px;
+
+    @include desktop {
+      margin-top: 40px;
+    }
+  }
+}
+

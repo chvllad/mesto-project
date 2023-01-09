@@ -1,0 +1,23 @@
+.image-view {
+  display: grid;
+  grid-template: "el";
+
+  &__image {
+    max-width: 75vw;
+    max-height: 75vh;
+    object-fit: cover;
+    grid-area: el;
+  }
+
+  &__title {
+    margin-bottom: -25px;
+    width: 0;
+    min-width: 100%;
+    grid-area: el;
+    align-self: end;
+    overflow: hidden;
+    font: 400 12px/15px Inter, sans-serif;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,0 +1,115 @@
+.profile {
+  display: grid;
+  grid-template:
+    "photo photo photo"
+    ". . ." 26px
+    ". name edit"
+    ". . ." 8px
+    "status status status"
+    ". . ." 32px
+    "add add add"
+    / minmax(calc(var(--profile-edit-button-size) + var(--profile-edit-button-space) + 18.5px), 1fr)
+    minmax(0, auto) /* Won't break in case of overflow */
+    minmax(calc(var(--profile-edit-button-size) + var(--profile-edit-button-space) + 18.5px), 1fr);
+
+  @include desktop {
+    grid-template:
+      "photo . name edit . add"
+      "photo . . . . add" 9px
+      "photo . status status . add"
+      / 120px 30px auto 1fr 30px 150px;
+  }
+
+  &__add {
+    @include reset;
+
+    box-sizing: border-box;
+    height: 50px;
+    grid-area: add;
+    align-self: center;
+    background-color: transparent;
+    background-image: url("../../images/profile-add.svg");
+    background-repeat: no-repeat;
+    background-size: var(--profile-add-button-image-size) var(--profile-add-button-image-size);
+    background-position: center;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    outline: none;
+
+    @include focus-hover-opacity(0.6);
+  }
+
+  &__edit {
+    @include reset;
+
+    margin-left: var(--profile-edit-button-space);
+    box-sizing: border-box;
+    width: var(--profile-edit-button-size);
+    height: var(--profile-edit-button-size);
+    grid-area: edit;
+    align-self: center;
+    background-color: transparent;
+    background-image: url("../../images/profile-edit.svg");
+    background-repeat: no-repeat;
+    background-size: var(--profile-edit-button-image-size) var(--profile-edit-button-image-size);
+    background-position: center;
+    border: 1px solid #fff;
+    outline: none;
+
+    @include focus-hover-opacity(0.6);
+
+    @include desktop {
+      align-self: end;
+
+      margin-bottom: 8px;
+    }
+  }
+
+  &__name {
+    @include reset;
+
+    grid-area: name;
+    font: 500 27px/33px Inter, sans-serif;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    @include desktop {
+      align-self: end;
+      font-size: 42px;
+      line-height: 48px;
+      text-align: left;
+    }
+  }
+
+  &__photo {
+    width: 42.55%;
+    grid-area: photo;
+    justify-self: center;
+
+    @include desktop {
+      margin: 0;
+      width: 100%;
+      justify-self: stretch;
+      align-self: center;
+    }
+  }
+
+  &__status {
+    @include reset;
+
+    grid-area: status;
+    font: 400 14px/17px Inter, sans-serif;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    @include desktop {
+      font-size: 18px;
+      line-height: 22px;
+      text-align: left;
+    }
+  }
+}

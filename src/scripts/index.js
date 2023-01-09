@@ -1,4 +1,4 @@
-import '../pages/index.css';
+import '../scss/index.scss';
 
 import openAddCard from './modal/add-card.js';
 import openProfileEdit from './modal/profile-edit.js';

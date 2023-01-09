@@ -1,0 +1,10 @@
+.square-image {
+  height: auto;
+
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+
+  &_rounded {
+    border-radius: 50%;
+  }
+}

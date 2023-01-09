@@ -1,5 +1,0 @@
-.page__places {
-  margin: var(--page-profile-space) var(--page-min-horizontal-space) 0 var(--page-min-horizontal-space);
-
-  flex: auto;
-}

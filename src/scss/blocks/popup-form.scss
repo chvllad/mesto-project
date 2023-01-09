@@ -1,0 +1,120 @@
+.popup-form {
+  display: grid;
+  grid-template:
+    "title"
+    "." var(--popup-form-space-title)
+    "first-input"
+    "." 5px
+    "first-error"
+    "." 12px
+    "second-input"
+    "." 5px
+    "second-error"
+    "." 28px
+    "save" / 1fr;
+
+  &__error {
+    @include reset;
+
+    min-height: 15px;
+    font: 400 12px/15px Inter, sans-serif;
+    color: #f00;
+
+    &_first {
+      grid-area: first-error;
+    }
+
+    &_second {
+      grid-area: second-error;
+    }
+  }
+
+  &__input {
+    padding: 0 0 7px;
+
+    border: none;
+    border-bottom: 1px solid transparent;
+    outline: none;
+
+    background-image:
+      linear-gradient($popup-background-color, $popup-background-color),
+      linear-gradient(to right, #000 0%, #000 50%, rgba(0 0 0 / 20%) 50%, rgba(0 0 0 / 20%) 100%);
+    background-size: 201% 1px;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-position-x: right;
+    font: 400 14px/17px Inter, sans-serif;
+    color: inherit;
+    overflow: hidden;
+    transition: background 0.3s ease-out;
+
+    &:focus-visible {
+      background-position-x: left;
+    }
+
+    &::placeholder {
+      opacity: 1;
+      color: #c4c4c4;
+    }
+
+    &:not(:placeholder-shown):invalid {
+      background-image:
+        linear-gradient($popup-background-color, $popup-background-color),
+        linear-gradient(to right, #f00 0%, #f00 100%);
+    }
+
+    &_first {
+      grid-area: first-input;
+    }
+
+    &_second {
+      grid-area: second-input;
+    }
+  }
+
+  &__save {
+    padding: 14px 0;
+    outline: none;
+    grid-area: save;
+    font: 400 14px/17px Inter, sans-serif;
+    color: rgba(0 0 0 / 20%);
+    border: 1px solid rgba(0 0 0 / 20%);
+    border-radius: 2px;
+    background-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    @include tablet {
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+
+  &:valid > &__save {
+    color: #fff;
+    border: none;
+    background-color: #000;
+    cursor: pointer;
+  }
+
+  &:valid > &__save:hover,
+  &:valid > &__save:focus {
+    background-color: rgba(0 0 0 / 80%);
+  }
+
+  @media (hover: none) {
+    &:valid > &__save:hover {
+      background-color: #000;
+    }
+  }
+
+  &__title {
+    @include reset;
+    grid-area: title;
+    font: 900 18px/22px Inter, sans-serif;
+
+    @include tablet {
+      font-size: 24px;
+      line-height: 29px;
+    }
+  }
+}

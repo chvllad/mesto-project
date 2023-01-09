@@ -1,0 +1,95 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  visibility: hidden;
+  opacity: 0;
+
+  /* Prevents flickering while booting */
+  &_animated {
+    transition: visibility 0.2s ease, opacity 0.2s ease;
+  }
+
+  &_opened {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &_type_form {
+    overflow-y: auto;
+    grid-template:
+      ". .  ." minmax(56px, 1fr)
+      ". el ."
+      ". .  ." minmax(8px, 1fr)
+      / minmax(18px, 1fr) minmax(auto, 430px) minmax(18px, 1fr);
+
+    background-color: rgba(0 0 0 / 50%);
+  }
+
+  &_type_image {
+    grid-template:
+      ". .  ." minmax(32px, 1fr)
+      ". el ."
+      ". .  ." minmax(32px, 1fr)
+      / minmax(18px, 1fr) auto minmax(18px, 1fr);
+
+    background-color: rgba(0 0 0 / 90%);
+  }
+
+  &__close {
+    @include reset-button;
+    position: absolute;
+    top: -36px;
+    right: 0;
+    justify-self: start;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    background-image: url("../../images/close.svg");
+    background-size: contain;
+    outline: none;
+
+    @include focus-hover-opacity(0.6);
+
+    @include tablet {
+      top: -40px;
+      right: -40px;
+
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  &__container {
+    position: relative;
+    grid-area: el;
+    box-sizing: border-box;
+    width: 100%;
+
+    &_type_form {
+      padding: 22px 22px 25px 22px;
+      box-shadow: 0 0 25px rgba(0 0 0 / 15%);
+      border-radius: 10px;
+      background-color: $popup-background-color;
+      color: #000;
+
+      @include desktop {
+        padding: 34px 36px 37px 36px;
+      }
+    }
+
+    &_type_image {
+      height: 100%;
+    }
+  }
+
+  &__img {
+    width: 75vw;
+    height: 75vh;
+  }
+}

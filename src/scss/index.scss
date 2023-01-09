@@ -1,0 +1,16 @@
+@import "./vendor/normalize.css";
+@import "./vendor/fonts.css";
+
+@import "variables/variables.scss";
+@import "mixins/mixins.scss";
+
+@import "./blocks/square-image.scss";
+@import "./blocks/page.scss";
+@import "./blocks/header.scss";
+@import "./blocks/profile.scss";
+@import "./blocks/places.scss";
+@import "./blocks/place.scss";
+@import "./blocks/footer.scss";
+@import "./blocks/image-view.scss";
+@import "./blocks/popup-form.scss";
+@import "./blocks/popup.scss";

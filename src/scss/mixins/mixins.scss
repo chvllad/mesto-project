@@ -1,0 +1,70 @@
+@use "sass:list";
+
+@mixin reset() {
+  padding: 0;
+  margin: 0;
+}
+
+@mixin reset-list() {
+  @include reset;
+  list-style: none;
+}
+
+@mixin reset-button() {
+  @include reset;
+  border: none;
+}
+
+@mixin focus-hover {
+  &:focus {
+    @content();
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      cursor: pointer;
+      @content();
+    }
+  }
+}
+
+@mixin hover-animation($prop-names...) {
+  $values: null;
+  @each $prop-name in $prop-names {
+    $values: list.append($values, $prop-name 0.15s ease-in, $separator: comma);
+  }
+  transition: $values;
+}
+
+@mixin focus-hover-opacity($value) {
+  @include hover-animation(opacity);
+
+  @include focus-hover {
+    opacity: $value;
+  }
+}
+
+@mixin pseudo($width, $height) {
+  content: "";
+  display: block;
+  width: $width;
+  height: $height;
+}
+
+@mixin only-mobile() {
+  @media (min-width: $mobile-width) {
+    display: none;
+  }
+}
+
+@mixin tablet() {
+  @media (min-width: $mobile-width) {
+    @content();
+  }
+}
+
+@mixin desktop() {
+  @media (min-width: $tablet-width) {
+    @content();
+  }
+}

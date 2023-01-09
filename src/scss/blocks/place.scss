@@ -1,0 +1,67 @@
+.place {
+  padding-bottom: 25px;
+  display: grid;
+  grid-template:
+    "img img img img img"
+    ". . . . ." 25px
+    ". name . like ."
+    / 20px auto 20px min-content 20px;
+  color: #000;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+
+  &__img {
+    width: 0;
+    min-width: 100%;
+    grid-area: img;
+    cursor: pointer;
+  }
+
+  &__like {
+    @include reset-button;
+
+    width: 22px;
+    height: 19px;
+    grid-area: like;
+    align-self: center;
+    background-color: transparent;
+    background-image: url("../../images/like.svg");
+    background-size: cover;
+
+    @include focus-hover-opacity(0.5);
+
+    &_active {
+      background-image: url("../../images/like-active.svg");
+    }
+  }
+
+  &__name {
+    @include reset;
+
+    grid-area: name;
+    overflow: hidden;
+    font: 900 24px/29px Inter, sans-serif;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__remove {
+    @include reset;
+
+    margin: 20px;
+    width: 18px;
+    height: 19px;
+    grid-area: img;
+    justify-self: right;
+    align-self: start;
+    border: none;
+    background-color: transparent;
+    transition: opacity 0.15s ease-in-out;
+    background-image: url("../../images/remove.svg");
+    background-size: cover;
+    filter: drop-shadow(0 0 5px black);
+
+    @include focus-hover-opacity(0.6);
+  }
+}

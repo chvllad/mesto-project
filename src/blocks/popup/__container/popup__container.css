@@ -1,8 +1,0 @@
-.popup__container {
-  position: relative;
-
-  grid-area: el;
-
-  box-sizing: border-box;
-  width: 100%;
-}

@@ -1,0 +1,11 @@
+.footer__text {
+  @include reset;
+
+  font: 400 14px/17px Inter, sans-serif;
+  color: #545454;
+
+  @include desktop {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
