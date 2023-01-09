@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "src/index.html",
   "scripts": {
     "lint": "eslint \"src/scripts/**/*.js\" && stylelint --config \"./.stylelintrc.json\" \"src/**/*.css\"",
