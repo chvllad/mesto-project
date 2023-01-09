@@ -29,7 +29,7 @@
   color: #c4c4c4;
 }
 
-.popup-form__input:invalid {
+.popup-form__input:not(:placeholder-shown):invalid {
   background-image:
     linear-gradient(var(--popup-background-color), var(--popup-background-color)),
     linear-gradient(to right, #f00 0%, #f00 100%);
