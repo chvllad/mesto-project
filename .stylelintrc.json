@@ -1,5 +1,8 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": "stylelint-config-standard-scss",
+  "plugins": [
+    "stylelint-scss"
+  ],
   "rules": {
     "indentation": 2,
     "declaration-empty-line-before": ["always", {
@@ -14,9 +17,11 @@
     "selector-class-pattern": null,
     "value-keyword-case": ["lower", {
       "ignoreProperties": ["transition"]
-    }]
+    }],
+    "scss/operator-no-newline-before": null
   },
   "ignoreFiles": [
-    "src/vendor/normalize.css"
+    "src/scss/vendor/normalize.css",
+    "dist/*"
   ]
 }

@@ -6,8 +6,8 @@
   "type": "module",
   "main": "src/index.html",
   "scripts": {
-    "lint": "eslint \"src/scripts/**/*.js\" && stylelint --config \"./.stylelintrc.json\" \"src/**/*.css\"",
-    "lint-fix": "eslint \"src/scripts/**/*.js\" --fix && stylelint --config \"./.stylelintrc.json\" \"src/**/*.css\" --fix",
+    "lint": "eslint \"src/scripts/**/*.js\" && stylelint --config \"./.stylelintrc.json\" \"src/**/*.?css\"",
+    "lint-fix": "eslint \"src/scripts/**/*.js\" --fix && stylelint --config \"./.stylelintrc.json\" \"src/**/*.?css\" --fix",
     "build": "webpack --mode production",
     "dev": "webpack serve"
   },
@@ -31,7 +31,8 @@
     "resolve-url-loader": "^5.0.0",
     "sass-loader": "^13.2.0",
     "stylelint": "^14.16.0",
-    "stylelint-config-standard": "^29.0.0",
+    "stylelint-config-standard-scss": "^6.1.0",
+    "stylelint-scss": "^4.3.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"

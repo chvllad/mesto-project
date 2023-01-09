@@ -109,6 +109,7 @@
 
   &__title {
     @include reset;
+
     grid-area: title;
     font: 900 18px/22px Inter, sans-serif;
 

@@ -42,6 +42,7 @@
 
   &__close {
     @include reset-button;
+
     position: absolute;
     top: -36px;
     right: 0;
@@ -72,14 +73,14 @@
     width: 100%;
 
     &_type_form {
-      padding: 22px 22px 25px 22px;
+      padding: 22px 22px 25px;
       box-shadow: 0 0 25px rgba(0 0 0 / 15%);
       border-radius: 10px;
       background-color: $popup-background-color;
       color: #000;
 
       @include desktop {
-        padding: 34px 36px 37px 36px;
+        padding: 34px 36px 37px;
       }
     }
 

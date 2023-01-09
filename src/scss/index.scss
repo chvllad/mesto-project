@@ -1,16 +1,16 @@
-@import "./vendor/normalize.css";
-@import "./vendor/fonts.css";
+@import "vendor/normalize.css";
+@import "vendor/fonts.css";
+@import "variables/variables";
+@import "mixins/mixins";
 
-@import "variables/variables.scss";
-@import "mixins/mixins.scss";
-
-@import "./blocks/square-image.scss";
-@import "./blocks/page.scss";
-@import "./blocks/header.scss";
-@import "./blocks/profile.scss";
-@import "./blocks/places.scss";
-@import "./blocks/place.scss";
-@import "./blocks/footer.scss";
-@import "./blocks/image-view.scss";
-@import "./blocks/popup-form.scss";
-@import "./blocks/popup.scss";
+/* Blocks */
+@import "blocks/square-image";
+@import "blocks/page";
+@import "blocks/header";
+@import "blocks/profile";
+@import "blocks/places";
+@import "blocks/place";
+@import "blocks/footer";
+@import "blocks/image-view";
+@import "blocks/popup-form";
+@import "blocks/popup";

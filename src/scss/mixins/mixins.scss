@@ -7,11 +7,13 @@
 
 @mixin reset-list() {
   @include reset;
+
   list-style: none;
 }
 
 @mixin reset-button() {
   @include reset;
+
   border: none;
 }
 
@@ -30,9 +32,11 @@
 
 @mixin hover-animation($prop-names...) {
   $values: null;
+
   @each $prop-name in $prop-names {
     $values: list.append($values, $prop-name 0.15s ease-in, $separator: comma);
   }
+
   transition: $values;
 }
 
