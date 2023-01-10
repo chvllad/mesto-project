@@ -1,7 +1,6 @@
 import '../scss/index.scss';
 
-import openAddCard from './modal/add-card.js';
-import openProfileEdit from './modal/profile-edit.js';
+import { openAddCard, openProfileEdit } from './modal.js';
 import { createCard, insertCard } from './card.js';
 
 const initialCards = [

@@ -4,7 +4,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 export default {
-  entry: { main: './src/scripts/index.js' },
+  entry: { main: './src/components/index.js' },
   output: {
     path: resolve('dist'),
     filename: 'main.js',

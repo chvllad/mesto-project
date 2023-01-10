@@ -6,8 +6,8 @@
   "type": "module",
   "main": "src/index.html",
   "scripts": {
-    "lint": "eslint \"src/scripts/**/*.js\" && stylelint --config \"./.stylelintrc.json\" \"src/**/*.?css\"",
-    "lint-fix": "eslint \"src/scripts/**/*.js\" --fix && stylelint --config \"./.stylelintrc.json\" \"src/**/*.?css\" --fix",
+    "lint": "eslint \"src/components/**/*.js\" && stylelint --config \"./.stylelintrc.json\" \"src/**/*.?css\"",
+    "lint-fix": "eslint \"src/components/**/*.js\" --fix && stylelint --config \"./.stylelintrc.json\" \"src/**/*.?css\" --fix",
     "build": "webpack --mode production",
     "dev": "webpack serve"
   },

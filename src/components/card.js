@@ -1,4 +1,4 @@
-import openImageView from './modal/image-view.js';
+import { openImageView } from './modal.js';
 
 const setIsLiked = (likeEl, isLiked) => {
   if (isLiked) {

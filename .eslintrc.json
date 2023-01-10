@@ -6,7 +6,9 @@
     "es6": true
   },
   "rules": {
-    "import/extensions": [2, "always"]
+    "import/extensions": [2, "always"],
+    "no-param-reassign": "off",
+    "import/no-cycle": "off"
   },
   "parserOptions": {
     "ecmaVersion": "latest"
