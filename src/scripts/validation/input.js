@@ -14,7 +14,7 @@ export default class InputValidator {
 
   checkValidity() {
     if (this.#inputEl.validity.patternMismatch) {
-      this.#inputEl.setCustomValidity('Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы.');
+      this.#inputEl.setCustomValidity(this.#inputEl.getAttribute('data-invalid-message') || '');
     } else {
       this.#inputEl.setCustomValidity('');
     }

@@ -4,19 +4,19 @@
     "title"
     "." var(--popup-form-space-title)
     "first-input"
-    "." 5px
+    "." 3px
     "first-error"
-    "." 12px
+    "." 3px
     "second-input"
-    "." 5px
+    "." 3px
     "second-error"
-    "." 28px
+    "." 15px
     "save" / 1fr;
 
   &__error {
     @include reset;
 
-    min-height: 15px;
+    min-height: 30px;
     font: 400 12px/15px Inter, sans-serif;
     color: #f00;
 

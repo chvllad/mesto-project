@@ -41,9 +41,14 @@
       <button class="popup__close" type="button" aria-label="Закрыть"></button>
       <form novalidate action="#" class="popup-form profile-edit-form" name="profile-form">
         <h2 class="popup-form__title">Редактировать профиль</h2>
-        <input class="popup-form__input popup-form__input_first" required type="text" id="profile-name" name="profile-name" autocomplete="name" placeholder="Введите имя" minlength="2" maxlength="40" pattern="[a-zA-Zа-яА-ЯёЁ\- ]*">
+        <input class="popup-form__input popup-form__input_first" required type="text" id="profile-name"
+          name="profile-name" autocomplete="name" placeholder="Введите имя" minlength="2" maxlength="40"
+          pattern="[a-zA-Zа-яА-ЯёЁ\- ]*"
+          data-invalid-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы.">
         <p class="popup-form__error popup-form__error_first" role="alert" aria-atomic="true"></p>
-        <input class="popup-form__input popup-form__input_second" required type="text" id="status" name="status" autocomplete="off" placeholder="Введите статус" minlength="2" maxlength="200" pattern="[a-zA-Zа-яА-ЯёЁ\- ]*">
+        <input class="popup-form__input popup-form__input_second" required type="text" id="status" name="status"
+          autocomplete="off" placeholder="Введите статус" minlength="2" maxlength="200" pattern="[a-zA-Zа-яА-ЯёЁ\- ]*"
+          data-invalid-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы.">
         <p class="popup-form__error popup-form__error_second" role="alert" aria-atomic="true"></p>
         <button class="popup-form__save" type="submit">Сохранить</button>
       </form>
@@ -54,9 +59,12 @@
       <button class="popup__close" type="button" aria-label="Закрыть"></button>
       <form novalidate action="#" class="popup-form add-card-form" name="add-place">
         <h2 class="popup-form__title">Новое место</h2>
-        <input class="popup-form__input popup-form__input_first" required type="text" id="place-name" autocomplete="off" name="place-name" minlength="2" maxlength="30" pattern="[a-zA-Zа-яА-ЯёЁ\- ]*" placeholder="Название">
+        <input class="popup-form__input popup-form__input_first" required type="text" id="place-name" autocomplete="off"
+          name="place-name" minlength="2" maxlength="30" pattern="[a-zA-Zа-яА-ЯёЁ\- ]*" placeholder="Название"
+          data-invalid-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы.">
         <p class="popup-form__error popup-form__error_first" role="alert" aria-atomic="true"></p>
-        <input type="url" class="popup-form__input popup-form__input_second" required id="link" name="link" autocomplete="off" placeholder="Ссылка на картинку">
+        <input type="url" class="popup-form__input popup-form__input_second" required id="link" name="link"
+          autocomplete="off" placeholder="Ссылка на картинку">
         <p class="popup-form__error popup-form__error_second" role="alert" aria-atomic="true"></p>
         <button class="popup-form__save" type="submit">Создать</button>
       </form>
