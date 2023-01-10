@@ -3,8 +3,6 @@ export default class InputValidator {
 
   #errorEl;
 
-  isValid;
-
   constructor(inputEl, errorEl) {
     this.#inputEl = inputEl;
     this.#errorEl = errorEl;
@@ -15,7 +13,6 @@ export default class InputValidator {
   }
 
   reset() {
-    this.isValid = this.#inputEl.checkValidity();
     this.#errorEl.textContent = '';
   }
 
@@ -25,11 +22,10 @@ export default class InputValidator {
     } else {
       this.#inputEl.setCustomValidity('');
     }
-    this.isValid = this.#inputEl.validity.valid;
-    if (this.isValid) {
+    if (this.#inputEl.validity.valid) {
       this.#errorEl.textContent = '';
-      return;
+    } else {
+      this.#errorEl.textContent = this.#inputEl.validationMessage;
     }
-    this.#errorEl.textContent = this.#inputEl.validationMessage;
   }
 }

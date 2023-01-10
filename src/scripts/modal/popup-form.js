@@ -20,7 +20,7 @@ export default class PopupFormImpl {
     formEl.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      if (!this.#validator.isValid) {
+      if (!formEl.checkValidity()) {
         return;
       }
 

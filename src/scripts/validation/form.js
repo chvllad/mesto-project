@@ -7,10 +7,6 @@ export default class FormValidator {
     this.#validators = inputEls.map((inputEl, idx) => new InputValidator(inputEl, errorEls[idx]));
   }
 
-  get isValid() {
-    return this.#validators.every((val) => val.isValid);
-  }
-
   reset() {
     this.#validators.forEach((val) => val.reset());
   }
