@@ -1,8 +1,10 @@
 let currentPopup = null;
+let handleKeyDown = null;
 
 export const closePopup = (popupEl) => {
   popupEl.classList.remove('popup_opened');
   currentPopup = null;
+  document.removeEventListener('keydown', handleKeyDown);
 };
 
 export const showPopup = (popupEl) => {
@@ -11,6 +13,14 @@ export const showPopup = (popupEl) => {
   }
   popupEl.classList.add('popup_opened');
   currentPopup = popupEl;
+  document.addEventListener('keydown', handleKeyDown);
+};
+
+handleKeyDown = (e) => {
+  if (currentPopup && e.key === 'Escape') {
+    e.preventDefault();
+    closePopup(currentPopup);
+  }
 };
 
 document.querySelectorAll('.popup').forEach((popup) => {
@@ -21,12 +31,4 @@ document.querySelectorAll('.popup').forEach((popup) => {
       closePopup(target.closest('.popup'));
     }
   });
-});
-
-document.addEventListener('keydown', (e) => {
-  if (!currentPopup || e.key !== 'Escape') {
-    return;
-  }
-  e.preventDefault();
-  closePopup(currentPopup);
 });
