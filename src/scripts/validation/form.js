@@ -8,6 +8,6 @@ export default class FormValidator {
   }
 
   reset() {
-    this.#validators.forEach((val) => val.reset());
+    this.#validators.forEach((val) => val.checkValidity());
   }
 }

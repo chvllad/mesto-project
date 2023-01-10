@@ -7,16 +7,12 @@ export default class InputValidator {
     this.#inputEl = inputEl;
     this.#errorEl = errorEl;
 
-    this.reset();
-
     inputEl.addEventListener('input', this);
+
+    this.checkValidity();
   }
 
-  reset() {
-    this.#errorEl.textContent = '';
-  }
-
-  handleEvent() {
+  checkValidity() {
     if (this.#inputEl.validity.patternMismatch) {
       this.#inputEl.setCustomValidity('Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы.');
     } else {
@@ -27,5 +23,9 @@ export default class InputValidator {
     } else {
       this.#errorEl.textContent = this.#inputEl.validationMessage;
     }
+  }
+
+  handleEvent() {
+    this.checkValidity();
   }
 }
