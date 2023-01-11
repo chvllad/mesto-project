@@ -44,7 +44,7 @@ const showPopup = (popupEl) => {
   // примерного окончания анимации и фокусировать попап
   setTimeout(() => {
     popupEl.focus();
-  }, 500);
+  }, 200);
 };
 
 const createImageViewOpener = () => {
