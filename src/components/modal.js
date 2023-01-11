@@ -38,7 +38,13 @@ const showPopup = (popupEl) => {
   popupEl.classList.add('popup_opened');
   popupEl.addEventListener('keydown', handleKeyDown);
   popupEl.addEventListener('mousedown', handleMouseDown);
-  popupEl.focus();
+  // Попап не будет получать события клавиатуры, если не в фокусе,
+  // к сожалению накладывать события на документ нельзя
+  // (согласно предыдущему ревью), потому придётся ждать
+  // примерного окончания анимации и фокусировать попап
+  setTimeout(() => {
+    popupEl.focus();
+  }, 500);
 };
 
 const createImageViewOpener = () => {
