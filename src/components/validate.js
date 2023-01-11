@@ -1,13 +1,11 @@
-const createInputValidator = (inputEl, errorEl) => {
-  let isModified = false;
-
-  const checkValidity = () => {
+const createInputValidator = (inputEl, errorEl, errorMsgAttr) => {
+  const checkValidity = (showError) => {
     if (inputEl.validity.patternMismatch) {
-      inputEl.setCustomValidity(inputEl.getAttribute('data-invalid-message') || '');
+      inputEl.setCustomValidity(inputEl.getAttribute(errorMsgAttr) || '');
     } else {
       inputEl.setCustomValidity('');
     }
-    if (inputEl.validity.valid || (!isModified && inputEl.value === '')) {
+    if (inputEl.validity.valid || !showError) {
       errorEl.textContent = '';
     } else {
       errorEl.textContent = inputEl.validationMessage;
@@ -15,20 +13,22 @@ const createInputValidator = (inputEl, errorEl) => {
   };
 
   inputEl.addEventListener('input', () => {
-    isModified = true;
-    checkValidity();
+    checkValidity(true);
   });
 
-  checkValidity();
+  checkValidity(false);
 
   return () => {
-    isModified = false;
-    checkValidity();
+    checkValidity(false);
   };
 };
 
-export default (inputEls, errorEls) => {
-  const validators = inputEls.map((inputEl, idx) => createInputValidator(inputEl, errorEls[idx]));
+export default (formEl, { inputsSelector, errorMsgAttr, errorElementSuffix }) => {
+  const inputEls = formEl.querySelectorAll(inputsSelector);
+  const validators = [...inputEls].map((inputEl) => {
+    const errorEl = formEl.querySelector(`.${inputEl.id}${errorElementSuffix}`);
+    return createInputValidator(inputEl, errorEl, errorMsgAttr);
+  });
 
   return () => {
     validators.forEach((val) => val());

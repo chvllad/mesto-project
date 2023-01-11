@@ -49,7 +49,7 @@ export default {
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
-            options: { importLoaders: 1 },
+            options: { importLoaders: 3 },
           },
           'postcss-loader',
           'resolve-url-loader',

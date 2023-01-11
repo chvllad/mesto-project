@@ -1,34 +1,17 @@
 import '../scss/index.scss';
 
 import { openAddCard, openProfileEdit } from './modal.js';
-import { createCard, insertCard } from './card.js';
+import createCard from './card.js';
+import { cardsList, initialCards } from './constatns.js';
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-  },
-];
+// eslint-disable-next-line import/prefer-default-export
+export const insertCard = (data) => {
+  if (Array.isArray(data)) {
+    data.reverse().forEach((el) => cardsList.prepend(el));
+  } else {
+    cardsList.prepend(data);
+  }
+};
 
 insertCard(initialCards.map(createCard));
 
