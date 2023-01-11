@@ -2,7 +2,7 @@ import '../scss/index.scss';
 
 import { openAddCard, openProfileEdit } from './modal.js';
 import createCard from './card.js';
-import { cardsList, initialCards } from './constatns.js';
+import { cardsList, initialCards } from './constants.js';
 
 // eslint-disable-next-line import/prefer-default-export
 export const insertCard = (data) => {
