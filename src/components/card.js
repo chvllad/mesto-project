@@ -1,8 +1,10 @@
-import { openImageView } from './modal.js';
+import { ImageViewer } from './modal.js';
 
 const templateEl = document.querySelector('#card-template').content.firstElementChild;
+const cardsList = document.querySelector('.places__list');
+const imageViewer = new ImageViewer();
 
-export default ({ name, link }) => {
+export const createCard = ({ name, link }) => {
   const newCard = templateEl.cloneNode(true);
 
   const nameEl = newCard.querySelector('.place__name');
@@ -24,7 +26,15 @@ export default ({ name, link }) => {
 
   removeEl.addEventListener('click', () => newCard.remove());
 
-  imgEl.addEventListener('click', () => openImageView(name, link));
+  imgEl.addEventListener('click', () => imageViewer.open(name, link));
 
   return newCard;
+};
+
+export const insertCard = (data) => {
+  if (Array.isArray(data)) {
+    data.reverse().forEach((el) => cardsList.prepend(el));
+  } else {
+    cardsList.prepend(data);
+  }
 };

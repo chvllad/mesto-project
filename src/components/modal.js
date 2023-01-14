@@ -1,142 +1,132 @@
-import createFormValidator from './validate.js';
-import createCard from './card.js';
-// "не относится к инициализации карточки", хмм. Ну, импорт из index тоже вариант :D
-import { insertCard } from './index.js';
+import FormValidator from './validate.js';
+import { createCard, insertCard } from './card.js';
 
-const KEY_ESCAPE = 'Escape';
+/* Так как классы запрещено использовать, используем наследование через прототипы */
+function Popup(el) {
+  this.popupEl = el;
+  el.classList.add('popup_animated');
+}
 
-const closePopup = (el) => {
-  /*
-    Довольно забавный способ закрыть попап через синтез события keydown. Необходим чтобы
-    выполнить требования ревьювера чтобы переменную handleKeyDown в которой содержится
-    функция для события keydown сделать константой. Теперь отсутствует циклическая зависимость
-    между функциями, а значит можно предварительно не объявлять handleKeyDown со значением null.
-  */
-  el.dispatchEvent(new KeyboardEvent('keydown', {
-    bubbles: true,
-    key: KEY_ESCAPE,
-  }));
+Popup.prototype.show = function showPopup() {
+  this.popupEl.classList.add('popup_opened');
+  document.addEventListener('keydown', this);
+  this.popupEl.addEventListener('mousedown', this);
 };
 
-const handleMouseDown = ({ target }) => {
-  if (target.classList.contains('popup') || target.classList.contains('popup__close')) {
-    closePopup(target);
+Popup.prototype.hide = function hidePopup() {
+  this.popupEl.classList.remove('popup_opened');
+  document.removeEventListener('keydown', this);
+  this.popupEl.removeEventListener('mousedown', this);
+};
+
+Popup.prototype.handleEvent = function handlePopupEvent(e) {
+  switch (e.type) {
+    case 'keydown':
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        this.hide();
+      }
+      break;
+    case 'mousedown': {
+      const { target } = e;
+      if (target.classList.contains('popup') || target.classList.contains('popup__close')) {
+        this.hide();
+      }
+      break;
+    }
+    default: break;
   }
 };
 
-const handleKeyDown = (e) => {
-  if (e.key === KEY_ESCAPE) {
-    e.preventDefault();
-    const popupEl = e.target.closest('.popup');
-    popupEl.classList.remove('popup_opened');
-    popupEl.removeEventListener('keydown', handleKeyDown);
-    popupEl.removeEventListener('mousedown', handleMouseDown);
-  }
+function ImageViewer() {
+  Popup.call(this, document.querySelector('.image-view-popup'));
+
+  const imageViewEl = this.popupEl.querySelector('.image-view');
+  this.titleEl = imageViewEl.querySelector('.image-view__title');
+  this.imageEl = imageViewEl.querySelector('.image-view__image');
+}
+Object.setPrototypeOf(ImageViewer.prototype, Popup.prototype);
+
+ImageViewer.prototype.open = function openImageViewer(title, url) {
+  this.titleEl.textContent = title;
+  this.imageEl.src = url;
+  this.imageEl.alt = title;
+
+  this.show();
 };
 
-const showPopup = (popupEl) => {
-  popupEl.classList.add('popup_opened');
-  popupEl.addEventListener('keydown', handleKeyDown);
-  popupEl.addEventListener('mousedown', handleMouseDown);
-  // Попап не будет получать события клавиатуры, если не в фокусе,
-  // к сожалению накладывать события на документ нельзя
-  // (согласно предыдущему ревью), потому придётся ждать
-  // примерного окончания анимации и фокусировать попап
-  setTimeout(() => {
-    popupEl.focus();
-  }, 200);
-};
+function FormPopup(popupEl) {
+  Popup.call(this, popupEl);
 
-const createImageViewOpener = () => {
-  const popupEl = document.querySelector('.image-view-popup');
-  popupEl.classList.add('popup_animated');
-  const imageViewEl = popupEl.querySelector('.image-view');
-  const titleEl = imageViewEl.querySelector('.image-view__title');
-  const imageEl = imageViewEl.querySelector('.image-view__image');
-
-  return (title, url) => {
-    titleEl.textContent = title;
-    imageEl.src = url;
-    imageEl.alt = title;
-
-    showPopup(popupEl);
-  };
-};
-
-export const openImageView = createImageViewOpener();
-
-const createPopupFormHelper = (popupEl, onSubmit) => {
-  popupEl.classList.add('popup_animated');
-
-  const formEl = popupEl.querySelector('.popup-form');
-  const resetValidator = createFormValidator(formEl, {
+  this.formEl = popupEl.querySelector('.popup-form');
+  this.validator = new FormValidator(this.formEl, {
     inputsSelector: '.popup-form__input',
     errorElementSuffix: '-error-message',
     errorMsgAttr: 'data-invalid-message',
   });
 
-  formEl.addEventListener('submit', (e) => {
-    e.preventDefault();
+  this.formEl.addEventListener('submit', this);
+}
+Object.setPrototypeOf(FormPopup.prototype, Popup.prototype);
 
-    if (!formEl.checkValidity()) {
-      return;
-    }
+FormPopup.prototype.handleEvent = function handleFormPopupEvent(e) {
+  switch (e.type) {
+    case 'submit':
+      e.preventDefault();
 
-    onSubmit(formEl.elements);
-
-    closePopup(popupEl);
-  });
-
-  return {
-    openForm(openFn) {
-      if (openFn) {
-        openFn(formEl.elements);
-      } else {
-        formEl.reset();
+      if (!this.formEl.checkValidity()) {
+        return;
       }
 
-      resetValidator();
-      showPopup(popupEl);
-    },
-  };
+      this.onSubmit(this.formEl.elements);
+
+      this.hide();
+      break;
+    default:
+      Popup.prototype.handleEvent.call(this, e);
+      break;
+  }
 };
 
-const createAddCard = () => {
-  const onSubmit = ({ 'place-name': name, link }) => {
-    insertCard(createCard({
-      name: name.value,
-      link: link.value,
-    }));
-  };
-  const { openForm } = createPopupFormHelper(document.querySelector('.add-card-popup'), onSubmit);
+FormPopup.prototype.open = function openFormPopup() {
+  this.onOpen(this.formEl.elements);
 
-  return {
-    open() {
-      openForm();
-    },
-  };
+  this.validator.reset();
+  this.show();
 };
 
-export const openAddCard = createAddCard().open;
-
-const createProfileEdit = () => {
-  const nameEl = document.querySelector('.profile__name');
-  const statusEl = document.querySelector('.profile__status');
-
-  const onSubmit = ({ 'profile-name': name, status }) => {
-    nameEl.textContent = name.value;
-    statusEl.textContent = status.value;
-  };
-  const { openForm } = createPopupFormHelper(document.querySelector('.profile-edit-popup'), onSubmit);
-
-  return {
-    open() {
-      openForm(({ 'profile-name': name, status }) => {
-        name.value = nameEl.textContent;
-        status.value = statusEl.textContent;
-      });
-    },
-  };
+FormPopup.prototype.onOpen = function defaultOnOpen() {
+  this.formEl.reset();
 };
 
-export const openProfileEdit = createProfileEdit().open;
+function AddCard() {
+  FormPopup.call(this, document.querySelector('.add-card-popup'));
+}
+Object.setPrototypeOf(AddCard.prototype, FormPopup.prototype);
+
+AddCard.prototype.onSubmit = function addCardOnSubmit({ 'place-name': name, link }) {
+  insertCard(createCard({
+    name: name.value,
+    link: link.value,
+  }));
+};
+
+function ProfileEdit() {
+  FormPopup.call(this, document.querySelector('.profile-edit-popup'));
+
+  this.nameEl = document.querySelector('.profile__name');
+  this.statusEl = document.querySelector('.profile__status');
+}
+Object.setPrototypeOf(ProfileEdit.prototype, FormPopup.prototype);
+
+ProfileEdit.prototype.onSubmit = function profileEditOnSubmit({ 'profile-name': name, status }) {
+  this.nameEl.textContent = name.value;
+  this.statusEl.textContent = status.value;
+};
+
+ProfileEdit.prototype.onOpen = function profileEditOnOpen({ 'profile-name': name, status }) {
+  name.value = this.nameEl.textContent;
+  status.value = this.statusEl.textContent;
+};
+
+export { AddCard, ImageViewer, ProfileEdit };

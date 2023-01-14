@@ -1,5 +1,4 @@
-export const cardsList = document.querySelector('.places__list');
-
+// eslint-disable-next-line import/prefer-default-export
 export const initialCards = [
   {
     name: 'Архыз',
