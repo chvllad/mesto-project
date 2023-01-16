@@ -8,7 +8,9 @@
   "rules": {
     "import/extensions": [2, "always"],
     "no-param-reassign": "off",
-    "import/no-cycle": "off"
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "class-methods-use-this": "off",
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
   },
   "parserOptions": {
     "ecmaVersion": "latest"

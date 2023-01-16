@@ -27,32 +27,6 @@ const BUYKAL_LINK = 'https://pictures.s3.yandex.net/frontend-developer/cards-com
 export const PROFILE_EDIT_SEL = '.profile__edit';
 export const PROFILE_ADD_SEL = '.profile__add';
 
-// modal.js
-export const POPUP_ANIMATED_CLASS = 'popup_animated';
-export const POPUP_OPENED_CLASS = 'popup_opened';
-export const KEYDOWN_EVENT_TYPE = 'keydown';
-export const MOUSEDOWN_EVENT_TYPE = 'mousedown';
-export const ESCAPE_KEY = 'Escape';
-export const POPUP_CLASS = 'popup';
-export const POPUP_CLOSE_CLASS = 'popup__close';
-export const IMAGE_VIEW_POPUP_SEL = '.image-view-popup';
-export const IMAGE_VIEW_SEL = '.image-view';
-export const IMAGE_VIEW_TITLE_SEL = '.image-view__title';
-export const IMAGE_VIEW_IMAGE_SEL = '.image-view__image';
-export const POPUP_FORM_SEL = '.popup-form';
-export const POPUP_FORM_INPUT_SEL = '.popup-form__input';
-export const POPUP_ERROR_EL_SUFFIX = '-error-message';
-export const POPUP_ERROR_MSG_ATTR = 'data-invalid-message';
-export const SUBMIT_EVENT_TYPE = 'submit';
-export const ADD_CARD_POPUP_SEL = '.add-card-popup';
-export const PLACE_NAME_FORM_EL_NAME = 'place-name';
-export const LINK_FORM_EL_NAME = 'link';
-export const PROFILE_EDIT_POPUP_SEL = '.profile-edit-popup';
-export const PROFILE_NAME_SEL = '.profile__name';
-export const PROFILE_STATUS_SEL = '.profile__status';
-export const PROFILE_NAME_FORM_EL_NAME = 'profile-name';
-export const STATUS_FORM_EL_NAME = 'status';
-
 // utils.js
 export const PLACES_LIST_SEL = '.places__list';
 

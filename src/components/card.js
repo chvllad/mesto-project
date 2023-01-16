@@ -1,4 +1,4 @@
-import { ImageViewer } from './modal.js';
+import ImageViewer from './modal/image-viewer.js';
 import {
   CARD_TEMPLATE_SEL,
   CLICK_EVENT_TYPE,
@@ -10,6 +10,7 @@ import {
 } from './constants.js';
 
 const templateEl = document.querySelector(CARD_TEMPLATE_SEL).content.firstElementChild;
+const imageViewer = new ImageViewer();
 
 // eslint-disable-next-line import/prefer-default-export
 export const createCard = ({ name, link }) => {
@@ -34,7 +35,7 @@ export const createCard = ({ name, link }) => {
 
   removeEl.addEventListener(CLICK_EVENT_TYPE, () => newCard.remove());
 
-  imgEl.addEventListener(CLICK_EVENT_TYPE, () => ImageViewer.open(name, link));
+  imgEl.addEventListener(CLICK_EVENT_TYPE, () => imageViewer.open(name, link));
 
   return newCard;
 };
