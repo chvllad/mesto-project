@@ -2,15 +2,20 @@ import '../scss/index.scss';
 
 import { AddCard, ProfileEdit } from './modal.js';
 import { createCard } from './card.js';
-import { initialCards } from './constants.js';
+import {
+  CLICK_EVENT_TYPE,
+  initialCards,
+  PROFILE_ADD_SEL,
+  PROFILE_EDIT_SEL,
+} from './constants.js';
 import { insertCard } from './utils.js';
 
 insertCard(initialCards.map(createCard));
 
-document.querySelector('.profile__edit').addEventListener('click', () => {
+document.querySelector(PROFILE_EDIT_SEL).addEventListener(CLICK_EVENT_TYPE, () => {
   ProfileEdit.open();
 });
 
-document.querySelector('.profile__add').addEventListener('click', () => {
+document.querySelector(PROFILE_ADD_SEL).addEventListener(CLICK_EVENT_TYPE, () => {
   AddCard.open();
 });

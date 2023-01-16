@@ -1,6 +1,32 @@
 import createFormValidator from './validate.js';
 import { createCard } from './card.js';
 import { insertCard } from './utils.js';
+import {
+  ADD_CARD_POPUP_SEL,
+  ESCAPE_KEY,
+  IMAGE_VIEW_IMAGE_SEL,
+  IMAGE_VIEW_POPUP_SEL,
+  IMAGE_VIEW_SEL,
+  IMAGE_VIEW_TITLE_SEL,
+  KEYDOWN_EVENT_TYPE,
+  LINK_FORM_EL_NAME,
+  MOUSEDOWN_EVENT_TYPE,
+  PLACE_NAME_FORM_EL_NAME,
+  POPUP_ANIMATED_CLASS,
+  POPUP_CLASS,
+  POPUP_CLOSE_CLASS,
+  POPUP_ERROR_EL_SUFFIX,
+  POPUP_ERROR_MSG_ATTR,
+  POPUP_FORM_INPUT_SEL,
+  POPUP_FORM_SEL,
+  POPUP_OPENED_CLASS,
+  PROFILE_EDIT_POPUP_SEL,
+  PROFILE_NAME_FORM_EL_NAME,
+  PROFILE_NAME_SEL,
+  PROFILE_STATUS_SEL,
+  STATUS_FORM_EL_NAME,
+  SUBMIT_EVENT_TYPE,
+} from './constants.js';
 
 /* Так как классы и наследование через прототипы функций запрещено использовать,
   используем ручную реализацию наследования через обычные объекты */
@@ -8,29 +34,30 @@ import { insertCard } from './utils.js';
 const popupPrototype = {
   construct(el) {
     this.popupEl = el;
-    el.classList.add('popup_animated');
+    el.classList.add(POPUP_ANIMATED_CLASS);
   },
   show() {
-    this.popupEl.classList.add('popup_opened');
-    document.addEventListener('keydown', this);
-    this.popupEl.addEventListener('mousedown', this);
+    this.popupEl.classList.add(POPUP_OPENED_CLASS);
+    document.addEventListener(KEYDOWN_EVENT_TYPE, this);
+    this.popupEl.addEventListener(MOUSEDOWN_EVENT_TYPE, this);
   },
   hide() {
-    this.popupEl.classList.remove('popup_opened');
-    document.removeEventListener('keydown', this);
-    this.popupEl.removeEventListener('mousedown', this);
+    this.popupEl.classList.remove(POPUP_OPENED_CLASS);
+    document.removeEventListener(KEYDOWN_EVENT_TYPE, this);
+    this.popupEl.removeEventListener(MOUSEDOWN_EVENT_TYPE, this);
   },
   handleEvent(e) {
     switch (e.type) {
-      case 'keydown':
-        if (e.key === 'Escape') {
+      case KEYDOWN_EVENT_TYPE:
+        if (e.key === ESCAPE_KEY) {
           e.preventDefault();
           this.hide();
         }
         break;
-      case 'mousedown': {
+      case MOUSEDOWN_EVENT_TYPE: {
         const { target } = e;
-        if (target.classList.contains('popup') || target.classList.contains('popup__close')) {
+        // eslint-disable-next-line max-len
+        if (target.classList.contains(POPUP_CLASS) || target.classList.contains(POPUP_CLOSE_CLASS)) {
           this.hide();
         }
         break;
@@ -43,10 +70,10 @@ const popupPrototype = {
 const imageViewerPrototype = {
   __proto__: popupPrototype,
   construct() {
-    popupPrototype.construct.call(this, document.querySelector('.image-view-popup'));
-    const imageViewEl = this.popupEl.querySelector('.image-view');
-    this.titleEl = imageViewEl.querySelector('.image-view__title');
-    this.imageEl = imageViewEl.querySelector('.image-view__image');
+    popupPrototype.construct.call(this, document.querySelector(IMAGE_VIEW_POPUP_SEL));
+    const imageViewEl = this.popupEl.querySelector(IMAGE_VIEW_SEL);
+    this.titleEl = imageViewEl.querySelector(IMAGE_VIEW_TITLE_SEL);
+    this.imageEl = imageViewEl.querySelector(IMAGE_VIEW_IMAGE_SEL);
   },
   open(title, url) {
     this.titleEl.textContent = title;
@@ -62,18 +89,18 @@ const formPopupPrototype = {
   construct(popupEl) {
     popupPrototype.construct.call(this, popupEl);
 
-    this.formEl = popupEl.querySelector('.popup-form');
+    this.formEl = popupEl.querySelector(POPUP_FORM_SEL);
     this.validator = createFormValidator(this.formEl, {
-      inputsSelector: '.popup-form__input',
-      errorElementSuffix: '-error-message',
-      errorMsgAttr: 'data-invalid-message',
+      inputsSelector: POPUP_FORM_INPUT_SEL,
+      errorElementSuffix: POPUP_ERROR_EL_SUFFIX,
+      errorMsgAttr: POPUP_ERROR_MSG_ATTR,
     });
 
-    this.formEl.addEventListener('submit', this);
+    this.formEl.addEventListener(SUBMIT_EVENT_TYPE, this);
   },
   handleEvent(e) {
     switch (e.type) {
-      case 'submit':
+      case SUBMIT_EVENT_TYPE:
         e.preventDefault();
 
         if (!this.formEl.checkValidity()) {
@@ -103,9 +130,9 @@ const formPopupPrototype = {
 const addCardPrototype = {
   __proto__: formPopupPrototype,
   construct() {
-    formPopupPrototype.construct.call(this, document.querySelector('.add-card-popup'));
+    formPopupPrototype.construct.call(this, document.querySelector(ADD_CARD_POPUP_SEL));
   },
-  onSubmit({ 'place-name': name, link }) {
+  onSubmit({ [PLACE_NAME_FORM_EL_NAME]: name, [LINK_FORM_EL_NAME]: link }) {
     insertCard(createCard({
       name: name.value,
       link: link.value,
@@ -116,16 +143,16 @@ const addCardPrototype = {
 const profileEditPrototype = {
   __proto__: formPopupPrototype,
   construct() {
-    formPopupPrototype.construct.call(this, document.querySelector('.profile-edit-popup'));
+    formPopupPrototype.construct.call(this, document.querySelector(PROFILE_EDIT_POPUP_SEL));
 
-    this.nameEl = document.querySelector('.profile__name');
-    this.statusEl = document.querySelector('.profile__status');
+    this.nameEl = document.querySelector(PROFILE_NAME_SEL);
+    this.statusEl = document.querySelector(PROFILE_STATUS_SEL);
   },
-  onSubmit({ 'profile-name': name, status }) {
+  onSubmit({ [PROFILE_NAME_FORM_EL_NAME]: name, [STATUS_FORM_EL_NAME]: status }) {
     this.nameEl.textContent = name.value;
     this.statusEl.textContent = status.value;
   },
-  onOpen({ 'profile-name': name, status }) {
+  onOpen({ [PROFILE_NAME_FORM_EL_NAME]: name, [STATUS_FORM_EL_NAME]: status }) {
     name.value = this.nameEl.textContent;
     status.value = this.statusEl.textContent;
   },

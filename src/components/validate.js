@@ -1,3 +1,5 @@
+import { DOT, EMPTY_STRING, INPUT_EVENT_TYPE } from './constants.js';
+
 /* Так как классы и наследование через прототипы функций запрещено использовать,
   используем ручную реализацию наследования через обычные объекты */
 
@@ -10,12 +12,12 @@ const inputValidatorPrototype = {
   },
   check(showError) {
     if (this.inputEl.validity.patternMismatch) {
-      this.inputEl.setCustomValidity(this.inputEl.getAttribute(this.errorMsgAttr) || '');
+      this.inputEl.setCustomValidity(this.inputEl.getAttribute(this.errorMsgAttr) || EMPTY_STRING);
     } else {
-      this.inputEl.setCustomValidity('');
+      this.inputEl.setCustomValidity(EMPTY_STRING);
     }
     if (this.inputEl.validity.valid || !showError) {
-      this.errorEl.textContent = '';
+      this.errorEl.textContent = EMPTY_STRING;
     } else {
       this.errorEl.textContent = this.inputEl.validationMessage;
     }
@@ -29,7 +31,7 @@ function createInputValidator(inputEl, errorEl, errorMsgAttr) {
     errorMsgAttr: { value: errorMsgAttr },
   });
 
-  inputEl.addEventListener('input', rv);
+  inputEl.addEventListener(INPUT_EVENT_TYPE, rv);
   rv.check(false);
   return rv;
 }
@@ -43,7 +45,7 @@ const formValidatorPrototype = {
 function createFormValidator(formEl, { inputsSelector, errorMsgAttr, errorElementSuffix }) {
   const inputEls = formEl.querySelectorAll(inputsSelector);
   const validators = [...inputEls].map((inputEl) => {
-    const errorEl = formEl.querySelector(`.${inputEl.id}${errorElementSuffix}`);
+    const errorEl = formEl.querySelector(`${DOT}${inputEl.id}${errorElementSuffix}`);
     return createInputValidator(inputEl, errorEl, errorMsgAttr);
   });
   return Object.create(formValidatorPrototype, {
