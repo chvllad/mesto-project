@@ -1,9 +1,14 @@
 import { ImageViewer } from './modal.js';
 
 const templateEl = document.querySelector('#card-template').content.firstElementChild;
-const cardsList = document.querySelector('.places__list');
-const imageViewer = new ImageViewer();
 
+/* Из-за циклической зависимости в импортах (index.js -> modal.js -> card.js -> modal.js)
+  нельзя использовать ImageViewer при инициализации модуля, а вынести ImageViewer в
+  отдельный файл для избавления от циклической зависимости запрещено ревьювером
+*/
+const getImageViewer = () => ImageViewer;
+
+// eslint-disable-next-line import/prefer-default-export
 export const createCard = ({ name, link }) => {
   const newCard = templateEl.cloneNode(true);
 
@@ -26,15 +31,7 @@ export const createCard = ({ name, link }) => {
 
   removeEl.addEventListener('click', () => newCard.remove());
 
-  imgEl.addEventListener('click', () => imageViewer.open(name, link));
+  imgEl.addEventListener('click', () => getImageViewer().open(name, link));
 
   return newCard;
-};
-
-export const insertCard = (data) => {
-  if (Array.isArray(data)) {
-    data.reverse().forEach((el) => cardsList.prepend(el));
-  } else {
-    cardsList.prepend(data);
-  }
 };

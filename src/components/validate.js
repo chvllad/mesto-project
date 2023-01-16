@@ -1,44 +1,54 @@
-/* Так как классы запрещено использовать, используем наследование через прототипы */
-function InputValidator(inputEl, errorEl, errorMsgAttr) {
-  this.inputEl = inputEl;
-  this.errorEl = errorEl;
-  this.errorMsgAttr = errorMsgAttr;
+/* Так как классы и наследование через прототипы функций запрещено использовать,
+  используем ручную реализацию наследования через обычные объекты */
 
-  inputEl.addEventListener('input', this);
-  this.check(false);
+const inputValidatorPrototype = {
+  handleEvent() {
+    this.check(true);
+  },
+  reset() {
+    this.check(false);
+  },
+  check(showError) {
+    if (this.inputEl.validity.patternMismatch) {
+      this.inputEl.setCustomValidity(this.inputEl.getAttribute(this.errorMsgAttr) || '');
+    } else {
+      this.inputEl.setCustomValidity('');
+    }
+    if (this.inputEl.validity.valid || !showError) {
+      this.errorEl.textContent = '';
+    } else {
+      this.errorEl.textContent = this.inputEl.validationMessage;
+    }
+  },
+};
+
+function createInputValidator(inputEl, errorEl, errorMsgAttr) {
+  const rv = Object.create(inputValidatorPrototype, {
+    inputEl: { value: inputEl },
+    errorEl: { value: errorEl },
+    errorMsgAttr: { value: errorMsgAttr },
+  });
+
+  inputEl.addEventListener('input', rv);
+  rv.check(false);
+  return rv;
 }
 
-InputValidator.prototype.handleEvent = function handleChangeEvent() {
-  this.check(true);
+const formValidatorPrototype = {
+  reset() {
+    this.validators.forEach((val) => val.reset());
+  },
 };
 
-InputValidator.prototype.reset = function resetValidator() {
-  this.check(false);
-};
-
-InputValidator.prototype.check = function checkInput(showError) {
-  if (this.inputEl.validity.patternMismatch) {
-    this.inputEl.setCustomValidity(this.inputEl.getAttribute(this.errorMsgAttr) || '');
-  } else {
-    this.inputEl.setCustomValidity('');
-  }
-  if (this.inputEl.validity.valid || !showError) {
-    this.errorEl.textContent = '';
-  } else {
-    this.errorEl.textContent = this.inputEl.validationMessage;
-  }
-};
-
-function FormValidator(formEl, { inputsSelector, errorMsgAttr, errorElementSuffix }) {
+function createFormValidator(formEl, { inputsSelector, errorMsgAttr, errorElementSuffix }) {
   const inputEls = formEl.querySelectorAll(inputsSelector);
-  this.validators = [...inputEls].map((inputEl) => {
+  const validators = [...inputEls].map((inputEl) => {
     const errorEl = formEl.querySelector(`.${inputEl.id}${errorElementSuffix}`);
-    return new InputValidator(inputEl, errorEl, errorMsgAttr);
+    return createInputValidator(inputEl, errorEl, errorMsgAttr);
+  });
+  return Object.create(formValidatorPrototype, {
+    validators: { value: validators },
   });
 }
 
-FormValidator.prototype.reset = function resetValidators() {
-  this.validators.forEach((val) => val.reset());
-};
-
-export default FormValidator;
+export default createFormValidator;
