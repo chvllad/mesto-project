@@ -19,7 +19,7 @@ class AvatarEdit extends FormPopup {
    * @param {HTMLFormControlsCollection} elements - Form elements.
    * @protected
    */
-  async onOpen({ link }) {
+  async onOpen({ 'avatar-link': link }) {
     for await (const userData of queryCurrentUser()) {
       if (userData.isError) {
         throw userData.error;
@@ -37,7 +37,7 @@ class AvatarEdit extends FormPopup {
    * @override
    * @protected
    */
-  async onSubmit({ link }) {
+  async onSubmit({ 'avatar-link': link }) {
     await sendUpdateAvatar(link.value);
   }
 }
