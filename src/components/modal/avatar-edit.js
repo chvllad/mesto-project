@@ -1,18 +1,17 @@
 /**
- * Profile edit popup helper module.
- * @module modal/profile-edit
+ * Avatar edit popup helper module.
+ * @module modal/avatar-edit
  */
-
-import { queryCurrentUser, sendUpdateUser } from '../api.js';
 import FormPopup from './form-popup.js';
+import { queryCurrentUser, sendUpdateAvatar } from '../api.js';
 
-/** ProfileEdit helper */
-class ProfileEdit extends FormPopup {
+/** AvatarEdit helper */
+class AvatarEdit extends FormPopup {
   /**
-   * Create a ProfileEdit helper.
+   * Create a AvatarEdit helper.
    */
   constructor() {
-    super(document.querySelector('.profile-edit-popup'));
+    super(document.querySelector('.avatar-edit-popup'));
   }
 
   /**
@@ -20,14 +19,13 @@ class ProfileEdit extends FormPopup {
    * @param {HTMLFormControlsCollection} elements - Form elements.
    * @protected
    */
-  async onOpen({ 'profile-name': name, status }) {
+  async onOpen({ link }) {
     for await (const userData of queryCurrentUser()) {
       if (userData.isError) {
         throw userData.error;
       }
       if (userData.isLoaded) {
-        name.value = userData.value.name;
-        status.value = userData.value.about;
+        link.value = userData.value.avatar;
         return;
       }
     }
@@ -39,9 +37,9 @@ class ProfileEdit extends FormPopup {
    * @override
    * @protected
    */
-  async onSubmit({ 'profile-name': name, status }) {
-    await sendUpdateUser(name.value, status.value);
+  async onSubmit({ link }) {
+    await sendUpdateAvatar(link.value);
   }
 }
 
-export default ProfileEdit;
+export default AvatarEdit;

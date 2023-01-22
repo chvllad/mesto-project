@@ -3,14 +3,16 @@
   "env": {
     "browser": true,
     "node": false,
-    "es6": true
+    "es2021": true
   },
   "rules": {
     "import/extensions": [2, "always"],
     "no-param-reassign": "off",
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     "class-methods-use-this": "off",
-    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+    "dot-notation": "off"
   },
   "parserOptions": {
     "ecmaVersion": "latest"

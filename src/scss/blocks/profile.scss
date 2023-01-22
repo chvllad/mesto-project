@@ -84,9 +84,40 @@
   }
 
   &__photo {
+    width: 100%;
+  }
+
+  &__photo-edit {
+    @include reset-button;
+
     width: 42.55%;
     grid-area: photo;
     justify-self: center;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: transparent;
+    position: relative;
+
+    &::after {
+      @include pseudo(100%, 100%);
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: rgba(0 0 0 / 80%);
+      background-image: url("../../images/edit-avatar.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 26px 26px;
+      opacity: 0;
+      cursor: pointer;
+
+      @include hover-animation(opacity);
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
 
     @include desktop {
       margin: 0;

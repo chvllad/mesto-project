@@ -5,6 +5,8 @@
     "img img img img img"
     ". . . . ." 25px
     ". name . like ."
+    ". name . . ." 3px
+    ". name . like-count ."
     / 20px auto 20px min-content 20px;
   color: #000;
   background-color: #fff;
@@ -26,18 +28,39 @@
     grid-area: like;
     align-self: center;
     background-color: transparent;
-    background-image: url("../../images/like.svg");
-    background-size: cover;
+    background-image: url("../../images/loading.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: wait;
 
     @include hover-animation(opacity);
 
-    @include hover {
-      opacity: 0.5;
+    &_state_liked {
+      background-image: url("../../images/like-active.svg");
+      cursor: pointer;
+
+      @include hover {
+        opacity: 0.5;
+      }
     }
 
-    &_active {
-      background-image: url("../../images/like-active.svg");
+    &_state_not-liked {
+      background-image: url("../../images/like.svg");
+      cursor: pointer;
+
+      @include hover {
+        opacity: 0.5;
+      }
     }
+  }
+
+  &__like-count {
+    @include reset;
+
+    grid-area: like-count;
+    font: 400 13px/16px Inter, sans-serif;
+    text-align: center;
   }
 
   &__name {
@@ -53,9 +76,12 @@
   &__remove {
     @include reset;
 
-    margin: 20px;
+    display: none;
+
+    padding: 20px;
     width: 18px;
     height: 19px;
+    box-sizing: content-box;
     grid-area: img;
     justify-self: right;
     align-self: start;
@@ -64,8 +90,23 @@
     transition: opacity 0.15s ease-in-out;
     background-image: url("../../images/remove.svg");
     background-size: cover;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-position: center center;
     filter: drop-shadow(0 0 5px black);
 
     @include focus-hover-opacity(0.6);
+
+    &_visible {
+      display: unset;
+    }
+
+    &_loading {
+      background-image: url("../../images/loading_white.svg");
+      background-size: contain;
+      background-origin: padding-box;
+
+      @include focus-hover-opacity(1);
+    }
   }
 }

@@ -1,31 +1,35 @@
 .popup-form {
   display: grid;
   grid-template:
-    "title"
-    "." var(--popup-form-space-title)
-    "first-input"
-    "." 3px
-    "first-error"
-    "." 3px
-    "second-input"
-    "." 3px
-    "second-error"
+    "fields"
     "." 15px
+    "submit-error"
     "save" / 1fr;
 
-  &__error {
+  &__fieldset {
     @include reset;
 
-    min-height: 30px;
-    font: 400 12px/15px Inter, sans-serif;
-    color: #f00;
+    border: none;
+    grid-area: fields;
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-rows: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 3px;
+  }
 
-    &_first {
-      grid-area: first-error;
-    }
+  &__title {
+    margin-bottom: calc(var(--popup-form-space-title) - 3px);
+  }
 
-    &_second {
-      grid-area: second-error;
+  &__error-submit {
+    grid-area: submit-error;
+    padding-bottom: 15px;
+
+    &:empty {
+      padding: 0;
+      min-height: 0;
     }
   }
 
@@ -62,60 +66,27 @@
         linear-gradient($popup-background-color, $popup-background-color),
         linear-gradient(to right, #f00 0%, #f00 100%);
     }
-
-    &_first {
-      grid-area: first-input;
-    }
-
-    &_second {
-      grid-area: second-input;
-    }
   }
 
   &__save {
-    padding: 14px 0;
-    outline: none;
     grid-area: save;
-    font: 400 14px/17px Inter, sans-serif;
+  }
+
+  &:invalid > &__save {
     color: rgba(0 0 0 / 20%);
     border: 1px solid rgba(0 0 0 / 20%);
-    border-radius: 2px;
     background-color: transparent;
-    transition: background-color 0.3s ease, color 0.3s ease;
-
-    @include tablet {
-      font-size: 18px;
-      line-height: 22px;
-    }
+    cursor: initial;
   }
 
-  &:valid > &__save {
-    color: #fff;
-    border: none;
-    background-color: #000;
-    cursor: pointer;
-  }
-
-  &:valid > &__save:hover,
-  &:valid > &__save:focus {
-    background-color: rgba(0 0 0 / 80%);
+  &:invalid > &__save:hover,
+  &:invalid > &__save:focus {
+    background-color: transparent;
   }
 
   @media (hover: none) {
-    &:valid > &__save:hover {
-      background-color: #000;
-    }
-  }
-
-  &__title {
-    @include reset;
-
-    grid-area: title;
-    font: 900 18px/22px Inter, sans-serif;
-
-    @include tablet {
-      font-size: 24px;
-      line-height: 29px;
+    &:invalid > &__save:hover {
+      background-color: transparent;
     }
   }
 }

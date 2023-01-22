@@ -5,6 +5,7 @@
 
 /* Blocks */
 @import "blocks/square-image";
+@import "blocks/element-loading";
 @import "blocks/page";
 @import "blocks/header";
 @import "blocks/profile";
@@ -12,5 +13,6 @@
 @import "blocks/place";
 @import "blocks/footer";
 @import "blocks/image-view";
-@import "blocks/popup-form";
 @import "blocks/popup";
+@import "blocks/popup-form";
+@import "blocks/popup-prompt-container";

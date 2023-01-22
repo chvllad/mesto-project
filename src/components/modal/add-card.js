@@ -1,9 +1,13 @@
+/**
+ * Add card popup helper module.
+ * @module modal/add-card
+ */
+
+import { sendNewCard } from '../api.js';
 import FormPopup from './form-popup.js';
-import { createCard } from '../card.js';
-import { insertCard } from '../utils.js';
 
 /** AddCard helper */
-export default class AddCard extends FormPopup {
+class AddCard extends FormPopup {
   /**
    * Create an AddCard helper.
    */
@@ -17,10 +21,9 @@ export default class AddCard extends FormPopup {
    * @override
    * @protected
    */
-  onSubmit({ 'place-name': name, link }) {
-    insertCard(createCard({
-      name: name.value,
-      link: link.value,
-    }));
+  async onSubmit({ 'place-name': name, link }) {
+    await sendNewCard({ name: name.value, link: link.value });
   }
 }
+
+export default AddCard;

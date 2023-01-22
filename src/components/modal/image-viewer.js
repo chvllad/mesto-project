@@ -1,7 +1,12 @@
+/**
+ * Image viewer helper module.
+ * @module modal/image-viewer
+ */
+
 import Popup from './popup.js';
 
-/** ImageViewer helper */
-export default class ImageViewer extends Popup {
+/** Image viewer helper */
+class ImageViewer extends Popup {
   /** @type {HTMLElement} */
   #titleEl;
   /** @type {HTMLImageElement} */
@@ -31,3 +36,5 @@ export default class ImageViewer extends Popup {
     this.show();
   }
 }
+
+export default ImageViewer;

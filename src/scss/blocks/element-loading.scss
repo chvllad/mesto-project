@@ -1,0 +1,33 @@
+.element-loading {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    @include pseudo(100%, 100%);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: rgba(0 0 0 / 80%);
+    background-image: url("../../images/loading_white.svg");
+    background-size: 40px 160px;
+    background-repeat: no-repeat;
+    background-position: center;
+    backdrop-filter: blur(2px);
+    cursor: wait;
+  }
+
+  &[data-load-error]::after {
+    background-image: none;
+    content: attr(data-load-error);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font: 400 14px/17px Inter, sans-serif;
+    color: #f66;
+    cursor: unset;
+  }
+}

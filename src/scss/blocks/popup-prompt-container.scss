@@ -1,0 +1,15 @@
+.popup-prompt-container {
+  display: grid;
+  grid-template:
+    "title"
+    "." 38px
+    "btn" / 1fr;
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__button {
+    grid-area: btn;
+  }
+}

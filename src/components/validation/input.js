@@ -1,5 +1,13 @@
-export default class InputValidator {
-  /** @type {HTMLElement} */
+/**
+ * Input validation module.
+ * @module validation/input
+ */
+
+/**
+ * InputValidator class.
+ */
+class InputValidator {
+  /** @type {HTMLInputElement} */
   #inputEl;
   /** @type {HTMLElement} */
   #errorEl;
@@ -40,6 +48,7 @@ export default class InputValidator {
   /**
    * Validate input.
    * @param {boolean} showError - show error in case of validation error.
+   * Ignored if input field is not empty.
    * @private
    */
   check(showError) {
@@ -48,10 +57,12 @@ export default class InputValidator {
     } else {
       this.#inputEl.setCustomValidity('');
     }
-    if (this.#inputEl.validity.valid || !showError) {
+    if (this.#inputEl.validity.valid || (!showError && this.#inputEl.value === '')) {
       this.#errorEl.textContent = '';
     } else {
       this.#errorEl.textContent = this.#inputEl.validationMessage;
     }
   }
 }
+
+export default InputValidator;

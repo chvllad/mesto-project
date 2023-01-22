@@ -1,3 +1,8 @@
+/**
+ * Form validation module.
+ * @module validation/form
+ */
+
 import InputValidator from './input.js';
 
 /**
@@ -9,7 +14,10 @@ import InputValidator from './input.js';
  * message.
  */
 
-export default class FormValidator {
+/**
+ * FormValidator class.
+ */
+class FormValidator {
   /** @type {InputValidator[]} */
   #validators;
 
@@ -34,3 +42,5 @@ export default class FormValidator {
     this.#validators.forEach((val) => val.reset());
   }
 }
+
+export default FormValidator;

@@ -1,5 +1,10 @@
+/**
+ * Popup helper module.
+ * @module modal/popup
+ */
+
 /** Popup helper */
-export default class Popup {
+class Popup {
   /** @type {string} */
   #closeKey;
 
@@ -32,7 +37,14 @@ export default class Popup {
     this.popupEl.classList.remove('popup_opened');
     document.removeEventListener('keydown', this);
     this.popupEl.removeEventListener('mousedown', this);
+    this.onHide();
   }
+
+  /**
+   * Runs after popup was hidden.
+   * @protected
+   * */
+  onHide() {}
 
   /**
    * Event listener.
@@ -58,3 +70,5 @@ export default class Popup {
     }
   }
 }
+
+export default Popup;
