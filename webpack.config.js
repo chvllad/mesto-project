@@ -2,13 +2,17 @@ import { resolve } from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+
+const jsEntry = './src/components/index.js';
+const htmlTemplate = './src/index.html';
 
 export default (_env, argv) => {
   const mode = argv.mode ?? 'development';
   const devtool = mode === 'production' ? false : 'eval-source-map';
 
   return {
-    entry: { main: './src/components/index.js' },
+    entry: { main: jsEntry },
     output: {
       path: resolve('dist'),
       filename: 'main.js',
@@ -34,7 +38,7 @@ export default (_env, argv) => {
           type: 'asset/resource',
         },
         {
-          test: /\.s[ac]ss$/i,
+          test: /\.s?css$/i,
           use: [
             MiniCssExtractPlugin.loader,
             {
@@ -52,17 +56,6 @@ export default (_env, argv) => {
           ],
         },
         {
-          test: /\.css$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: { importLoaders: 1 },
-            },
-            'postcss-loader',
-          ],
-        },
-        {
           test: /\.html?$/i,
           loader: 'html-loader',
         },
@@ -70,10 +63,22 @@ export default (_env, argv) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: htmlTemplate,
       }),
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin(),
     ],
+    optimization: {
+      minimizer: ['...', new CssMinimizerPlugin({
+        minimizerOptions: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true },
+            },
+          ],
+        },
+      })],
+    },
   };
 };

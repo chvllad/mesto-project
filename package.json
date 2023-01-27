@@ -20,7 +20,7 @@
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.3",
-    "cssnano": "^5.1.14",
+    "css-minimizer-webpack-plugin": "^4.2.2",
     "eslint": "^8.29.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
@@ -29,6 +29,7 @@
     "jsdoc": "^4.0.0",
     "mini-css-extract-plugin": "^2.7.2",
     "postcss-loader": "^7.0.2",
+    "postcss-preset-env": "^8.0.0",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",
@@ -41,5 +42,10 @@
   },
   "dependencies": {
     "core-js": "^3.27.1"
-  }
+  },
+  "browserslist": [
+    "Firefox >= 100",
+    "Chrome >= 100",
+    "Safari >= 16"
+  ]
 }
